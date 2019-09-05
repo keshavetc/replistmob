@@ -1,0 +1,33 @@
+page-rep-add-item-details {
+  .card_wrapper {
+    width: 150px;
+    display: table;
+    margin: auto;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  h3{
+    color: #6b6b6b;
+    text-align: center;
+    font-size: 18px;
+    margin-top: 24px;
+  }
+  .bottom_btns {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+
+    button {
+      width: 100%;
+    }
+
+    button[color="dark"] {
+      span.button-inner {
+        justify-content: space-between;
+      }
+    }
+  }
+
+}

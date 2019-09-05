@@ -1,0 +1,84 @@
+<ion-header no-border="">
+
+  <div class="parent">
+
+    <div class="child">
+      <button ion-button mode="ios" clear (tap)="buyers()">
+        Reps
+      </button>
+    </div>
+
+    <div class="child">
+      <button ion-button mode="ios" clear (tap)="ytd()">
+        YTD Orders
+      </button>
+    </div>
+
+    <div class="child">
+      <button ion-button icon-left="" mode="ios" clear (tap)="search()">
+        <ion-icon name="search"></ion-icon>
+        Search
+      </button>
+    </div>
+
+  </div>
+
+</ion-header>
+
+<ion-content padding>
+
+  <p>Welcome to Replist</p>
+
+  <img class="logo" src="assets/imgs/replistlogo.png" alt="">
+
+
+  <div class="btns_area">
+
+    <button ion-button icon-right="" mode="ios" color="primaryGrad" (tap)="addbuyers()">
+      Add a Rep
+      <ion-icon name="ios-add-outline"></ion-icon>
+    </button>
+
+    <div class="top">
+      <img
+        src="https://www.bbb.org/globalassets/local-bbbs/council-113/media/ad-truth/ad-truth-hero-630x320.png"
+        alt=""
+      />
+    </div>
+  </div>
+
+</ion-content>
+
+<ion-footer no-border="">
+  <div class="parent">
+
+    <div class="child">
+      <button ion-button mode="ios" clear (tap)="cart()">
+        <ion-icon name="cart"></ion-icon>
+        My Cart
+      </button>
+    </div>
+
+    <div class="child">
+      <button ion-button mode="ios" clear (tap)="request()">
+        <ion-icon name="person-add"></ion-icon>
+        Request
+      </button>
+    </div>
+
+    <div class="child">
+      <button ion-button mode="ios" clear (tap)="repshared()">
+        <ion-icon name="share"></ion-icon>
+        Shared Contacts
+      </button>
+    </div>
+
+    <div class="child">
+      <button ion-button mode="ios" clear (tap)="profile()">
+        <ion-icon name="person"></ion-icon>
+        Profile
+      </button>
+    </div>
+
+  </div>
+</ion-footer>

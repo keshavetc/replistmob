@@ -1,0 +1,67 @@
+page-rep-add-item {
+  .image_upload {
+    background-color: #f6f6f6;
+    padding: 8px;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: #a9a9a9;
+    border-radius: 6px;
+    overflow: hidden;
+
+    .icon {
+      font-size: 39px;
+      margin-bottom: 4px;
+    }
+  }
+
+  .icrmnt_dcrmnt_btns[item-end] {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 16px 0 0 0 !important;
+
+    button.button {
+      width: 30px;
+      height: 30px;
+      border-radius: 100%;
+      margin: 0;
+      font-size: 11px;
+    }
+
+    p {
+      margin: 0 8px;
+    }
+  }
+
+  .pricebox{
+    &:after{
+      position: absolute;
+      left: 0;
+      bottom: 9px;
+      content: '£';
+      font-size: 16px;
+    }
+    input{
+      padding-left: 16px;
+    }
+  }
+
+  .bottom_btns {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+
+    button {
+      width: 100%;
+    }
+
+    button[color="dark"] {
+      span.button-inner {
+        justify-content: space-between;
+      }
+    }
+  }
+}

@@ -1,0 +1,30 @@
+<ion-header no-border="">
+  <ion-toolbar color="primary">
+    <ion-buttons left="" style="margin-left: 8px" (tap)="home()">
+      <button ion-button icon-only="">
+        <ion-icon name="home"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <div class="top">
+    <h3>Order Placed</h3>
+    <button ion-button small color="primaryGrad" mode="ios" (tap)="details()">
+      View Order
+    </button>
+
+    <p>Delivery Date: 15th May 2019</p>
+  </div>
+  <div class="bottom_btns">
+
+    <button ion-button color="primaryGrad" mode="ios" (tap)="ytd()">
+      YTD Orders
+    </button>
+
+    <button ion-button color="primaryGrad" mode="ios" (tap)="done()">
+      Done
+    </button>
+  </div>
+</ion-content>

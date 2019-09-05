@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "279372522989",
+    "firebase_url": "https://replist-c3017.firebaseio.com",
+    "project_id": "replist-c3017",
+    "storage_bucket": "replist-c3017.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:279372522989:android:43bc226181cc2f6d",
+        "android_client_info": {
+          "package_name": "com.replist.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "279372522989-8a8a7s37nhac6nn2ntjkgs92g557f7e7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCR0eM0EJ_tVgO-5p0P0SD0QlhvmH7QSSA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "279372522989-8a8a7s37nhac6nn2ntjkgs92g557f7e7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

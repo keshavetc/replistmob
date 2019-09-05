@@ -1,0 +1,31 @@
+<ion-header no-border="">
+  <ion-navbar color="primary">
+    <ion-title>
+      Add Buyers
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-searchbar mode="ios" placeholder="Enter User ID"></ion-searchbar>
+
+  <ion-list no-margin="" no-lines="" *ngIf="buyers.length != 0">
+    <ion-item no-padding="" *ngFor="let buyer of buyers">
+      <ion-thumbnail item-start>
+        <img *ngIf="!buyers?.profilepic" src="">
+        <img *ngIf="buyers?.profilepic" [src]="buyers.profilepic">
+      </ion-thumbnail>
+      <h2>{{buyers.business}}</h2>
+      <p>{{buyers.typeofbusiness}}</p>
+      <p>{{buyers.address}}</p>
+
+      <button ion-button clear item-end icon-only="" (tap)="nodata()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+
+    </ion-item>
+
+  </ion-list>
+
+</ion-content>
+

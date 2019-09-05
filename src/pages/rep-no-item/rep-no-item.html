@@ -1,0 +1,45 @@
+<ion-header no-border="">
+  <ion-toolbar color="primary">
+    <ion-buttons left="" style="margin-left: 8px" (tap)="home()">
+      <button ion-button icon-only="">
+        <ion-icon name="home"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <h3>No more free items left</h3>
+
+  <div class="bottom_btns">
+
+    <button ion-button color="dark" outline mode="ios" disabled>
+      <span> Free Items </span>
+      <span> (10/10)</span>
+    </button>
+    <p>To add more items to your profile you need to buy a package.</p>
+
+
+    <div radio-group>
+      <ion-item no-padding="" no-lines="">
+        <ion-label>Some Package Info 1: $50 for 20 Items</ion-label>
+        <ion-radio value="1"></ion-radio>
+      </ion-item>
+
+      <ion-item no-padding="" no-lines="">
+        <ion-label>Some Package Info 1: $70 for 30 Items</ion-label>
+        <ion-radio value="2"></ion-radio>
+      </ion-item>
+    </div>
+
+    <button ion-button color="primaryGrad" mode="ios" margin-top="" (click)='buy()'>
+      Buy Now
+    </button>
+
+    <button ion-button color="primaryGrad" mode="ios" (tap)="this.navCtrl.pop()">
+      Cancel
+    </button>
+  </div>
+
+</ion-content>

@@ -1,0 +1,155 @@
+<ion-header no-border="">
+  <ion-navbar transparent="">
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-item no-padding>
+    <ion-label floating>Year in Business <small style="margin-left: 4px">(optional)</small></ion-label>
+    <ion-input type="text" [(ngModel)]="rep.experience"></ion-input>
+  </ion-item>
+
+  <p class="p_hdng">Hours of Operation</p>
+  <div class="parent">
+    <div class="child">
+      <ion-item no-padding>
+        <ion-label></ion-label>
+        <ion-select [(ngModel)]="rep.opentime">
+          <ion-option value="1">1 AM</ion-option>
+          <ion-option value="2">2 AM</ion-option>
+          <ion-option value="3">3 AM</ion-option>
+          <ion-option value="4">4 AM</ion-option>
+          <ion-option value="5">5 AM</ion-option>
+          <ion-option value="6">6 AM</ion-option>
+          <ion-option value="7">7 AM</ion-option>
+          <ion-option value="8">8 AM</ion-option>
+          <ion-option value="9">9 AM</ion-option>
+          <ion-option value="10">10 AM</ion-option>
+          <ion-option value="11">11 AM</ion-option>
+          <ion-option value="12">12 PM</ion-option>
+          <ion-option value="13">1 PM</ion-option>
+          <ion-option value="14">2 PM</ion-option>
+          <ion-option value="15">3 PM</ion-option>
+          <ion-option value="16">4 PM</ion-option>
+          <ion-option value="17">5 PM</ion-option>
+          <ion-option value="18">6 PM</ion-option>
+          <ion-option value="19">7 PM</ion-option>
+          <ion-option value="20">8 PM</ion-option>
+          <ion-option value="21">9 PM</ion-option>
+          <ion-option value="22">10 PM</ion-option>
+          <ion-option value="23">11 PM</ion-option>
+          <ion-option value="24">12 PM</ion-option>
+        </ion-select>
+      </ion-item>
+    </div>
+
+    <div class="middle">
+      to
+    </div>
+
+    <div class="child">
+      <ion-item no-padding>
+        <ion-label></ion-label>
+        <ion-select [(ngModel)]="rep.closedtime">
+          <ion-option value="1">1 AM</ion-option>
+          <ion-option value="2">2 AM</ion-option>
+          <ion-option value="3">3 AM</ion-option>
+          <ion-option value="4">4 AM</ion-option>
+          <ion-option value="5">5 AM</ion-option>
+          <ion-option value="6">6 AM</ion-option>
+          <ion-option value="7">7 AM</ion-option>
+          <ion-option value="8">8 AM</ion-option>
+          <ion-option value="9">9 AM</ion-option>
+          <ion-option value="10">10 AM</ion-option>
+          <ion-option value="11">11 AM</ion-option>
+          <ion-option value="12">12 PM</ion-option>
+          <ion-option value="13">1 PM</ion-option>
+          <ion-option value="14">2 PM</ion-option>
+          <ion-option value="15">3 PM</ion-option>
+          <ion-option value="16">4 PM</ion-option>
+          <ion-option value="17">5 PM</ion-option>
+          <ion-option value="18">6 PM</ion-option>
+          <ion-option value="19">7 PM</ion-option>
+          <ion-option value="20">8 PM</ion-option>
+          <ion-option value="21">9 PM</ion-option>
+          <ion-option value="22">10 PM</ion-option>
+          <ion-option value="23">11 PM</ion-option>
+          <ion-option value="24">12 PM</ion-option>
+        </ion-select>
+      </ion-item>
+    </div>
+
+  </div>
+
+  <p class="p_hdng">Days Open</p>
+  <div class="parent">
+    <div class="child">
+      <ion-item no-padding>
+        <ion-label></ion-label>
+        <ion-select [(ngModel)]="rep.weekstart">
+          <ion-option value="monday">Monday</ion-option>
+          <ion-option value="tuesday">Tuesday</ion-option>
+          <ion-option value="Wednesday">Wednesday</ion-option>
+          <ion-option value="thursday">Thursday</ion-option>
+          <ion-option value="friday">Friday</ion-option>
+          <ion-option value="saturday">Saturday</ion-option>
+          <ion-option value="sunday">Sunday</ion-option>
+        </ion-select>
+      </ion-item>
+    </div>
+
+    <div class="middle">
+      to
+    </div>
+
+    <div class="child">
+      <ion-item no-padding>
+        <ion-label></ion-label>
+        <ion-select [(ngModel)]="rep.weekend">
+          <ion-option value="monday">Monday</ion-option>
+          <ion-option value="tuesday">Tuesday</ion-option>
+          <ion-option value="Wednesday">Wednesday</ion-option>
+          <ion-option value="thursday">Thursday</ion-option>
+          <ion-option value="friday">Friday</ion-option>
+          <ion-option value="saturday">Saturday</ion-option>
+          <ion-option value="sunday">Sunday</ion-option>
+        </ion-select>
+      </ion-item>
+    </div>
+
+  </div>
+
+
+  <ion-item no-padding style="margin-top: 22px">
+    <ion-avatar item-start (tap)="logo()">
+      <ion-icon name="md-camera"></ion-icon>
+    </ion-avatar>
+    <p>Add company logo</p>
+  </ion-item>
+
+  <ion-item no-padding>
+    <ion-label floating>Email</ion-label>
+    <ion-input type="email" [(ngModel)]="rep.email"></ion-input>
+  </ion-item>
+
+  <ion-item no-padding>
+    <ion-label floating>Password</ion-label>
+    <ion-input type="Password" [(ngModel)]="rep.password"></ion-input>
+  </ion-item>
+
+  <ion-item no-padding>
+    <ion-label floating>Confirm Password</ion-label>
+    <ion-input type="Password" [(ngModel)]="confirm_password"></ion-input>
+  </ion-item>
+
+
+
+
+</ion-content>
+
+<ion-footer no-border="">
+  <button ion-button icon-right="" mode="ios" clear class="next_btn" (tap)="welcome()">
+    Next
+    <ion-icon name="ios-arrow-forward"></ion-icon>
+  </button>
+</ion-footer>

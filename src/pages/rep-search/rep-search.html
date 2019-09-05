@@ -1,0 +1,64 @@
+<ion-header no-border="">
+  <ion-navbar color="primary">
+    <ion-searchbar mode="ios" color="light"></ion-searchbar>
+
+    <ion-buttons right>
+      <button ion-button icon-only="">
+        <ion-icon name="locate"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <div #map id="map"></div>
+
+  <div class="cards">
+    <ion-slides slidesPerView="1.5" spaceBetween="16">
+      <ion-slide>
+        <ion-card>
+          <div class="imgs_wrapper">
+            <img
+              src="https://i0.wp.com/frenchmoments.eu/wp-content/uploads/2012/11/Place-des-Vosges-%C2%A9-French-Moments.jpg?fit=2048%2C1371&ssl=1"/>
+            <p>The spice shop</p>
+          </div>
+          <ion-card-content>
+            <ion-card-title>
+              Open
+            </ion-card-title>
+            <div class="address">
+              <ion-icon name="pin"></ion-icon>
+              <p>
+                Kelley A. Fleming 196 Woodside Circle Mobile
+              </p>
+            </div>
+          </ion-card-content>
+        </ion-card>
+      </ion-slide>
+      <ion-slide>
+        <ion-card>
+          <div class="imgs_wrapper">
+            <img
+              src="https://media-cdn.tripadvisor.com/media/photo-s/11/e6/63/f8/new-place-hotel.jpg"/>
+            <p>The spice shop</p>
+          </div>
+          <ion-card-content>
+            <ion-card-title>
+              Open
+            </ion-card-title>
+            <div class="address">
+              <ion-icon name="pin"></ion-icon>
+              <p>
+                Kelley A. Fleming 196 Woodside Circle Mobile
+              </p>
+            </div>
+          </ion-card-content>
+        </ion-card>
+      </ion-slide>
+    </ion-slides>
+  </div>
+
+</ion-content>
+
+

@@ -1,0 +1,118 @@
+page-profile {
+  ion-item.item.item-block.top_profile {
+    border-bottom: 1px solid #ededed;
+    padding-bottom: 16px;
+
+    ion-thumbnail {
+      text-align: center;
+      width: 110px;
+      margin: 0 16px 0 0;
+
+      img {
+        width: 110px;
+        height: 110px;
+        border-radius: 100%;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+      }
+
+      p {
+        margin-top: 8px;
+        color: map_get($colors, primary);
+        font-size: 15px;
+      }
+    }
+
+    .item-inner {
+      padding-right: 0;
+
+      ion-label.label {
+        margin: 0;
+        text-align: center;
+
+        h2 {
+          margin-bottom: 4px;
+        }
+
+        button {
+          margin-top: 16px;
+        }
+      }
+    }
+  }
+
+  ion-item.item.chooselogo{
+    ion-thumbnail{
+      max-width: 50px;
+      min-width: 50px;
+      min-height: 50px;
+      max-height: 50px;
+      img{
+        max-width: 50px;
+        min-width: 50px;
+        min-height: 50px;
+        max-height: 50px;
+      }
+    }
+  }
+
+  ion-list-header.item.list-header {
+    background-color: #f9f9f9;
+    border-radius: 6px;
+  }
+
+  ion-item.item.item-block.business_item {
+    margin-top: 12px;
+    .item-inner {
+      padding-right: 0;
+
+      ion-label.label {
+        margin: 0;
+        text-align: center;
+
+        h4 {
+          width: max-content;
+          margin: 0 auto 6px;
+          padding: 0 8px 4px;
+          border-bottom: 1px solid map_get($colors, primary);
+          color: map_get($colors, primary);
+        }
+
+        p {
+          border: 0.5px solid map_get($colors, primary);
+          padding: 4px;
+          border-radius: 12px;
+          font-size: 12px;
+          width: 70%;
+          margin: 12px auto;
+          text-align: center;
+          text-transform: capitalize;
+          color: #444444;
+        }
+      }
+    }
+  }
+
+  p.p_hdng {
+    color: #999999;
+    margin: 24px 0 0 0;
+  }
+  .parent {
+    display: flex;
+    .child {
+      flex: 1;
+    }
+    .middle {
+      margin: 6px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #999999;
+    }
+  }
+
+  .btns_wrapper {
+    display: flex;
+    flex-direction: column;
+    padding: 32px;
+  }
+}

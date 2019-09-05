@@ -1,0 +1,57 @@
+page-buyer-shared-rep {
+  .scroll-content {
+    background-color: #f8f8f8;
+
+    ion-searchbar.searchbar {
+      background-color: #f8f8f8;
+      border-bottom: 0;
+    }
+
+    ion-list {
+      padding: 8px;
+      background-color: transparent;
+
+      ion-item {
+        border-radius: 8px;
+        overflow: hidden;
+        margin-bottom: 6px;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+
+        ion-label.label {
+          white-space: normal;
+
+          p {
+            font-size: 14px;
+            color: #a1a1a1;
+            margin: 4px 0;
+
+            &:last-child {
+              margin-bottom: 0;
+            }
+          }
+        }
+
+        .item-inner {
+          padding-right: 0 !important;
+
+          button.item-button.button.button-clear {
+            height: 100%;
+            width: 50px;
+            background-color: #019ef9;
+            margin: 0;
+            color: #fff;
+          }
+        }
+      }
+    }
+  }
+
+  .share_btn {
+    width: 70%;
+    display: table;
+    margin: 16px auto;
+  }
+}

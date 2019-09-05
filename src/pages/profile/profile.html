@@ -1,0 +1,447 @@
+<ion-header no-border="">
+  <ion-navbar color="primary">
+    <ion-title>Profile</ion-title>
+  </ion-navbar>
+</ion-header>
+
+//////////////////////////////////Rep////////////////////////////////////
+<ion-content padding *ngIf="navParams.get('role') === 'rep'">
+  <ion-item no-lines="" no-padding="" class="top_profile">
+    <ion-thumbnail item-start>
+      <img *ngIf="!rep?.pic" src="https://randomuser.me/api/portraits/men/9.jpg">
+      <img *ngIf="rep?.pic" [src]="rep.pic" alt="">
+      <p>{{rep.name}}</p>
+      <small>User ID : {{rep.email}}</small>
+    </ion-thumbnail>
+    <h2>{{rep.companyname}}</h2>
+    <p>{{rep.contactno}}</p>
+    <button ion-button mode="ios" color="primaryGrad" full (tap)="ProfilePicChange()">Change Picture</button>
+  </ion-item>
+
+  <!--  <ion-list-header mode="ios" no-lines="" margin-top="">-->
+  <!--    About Business-->
+  <!--  </ion-list-header>-->
+
+  <ion-item no-lines="" no-padding="" class="business_item">
+    <ion-thumbnail item-start>
+      <img *ngIf="!rep?.companylogo"
+           src="https://www.designevo.com/res/templates/thumb_small/yellow-signboard-and-colorful-hamburger.png">
+      <img *ngIf="rep?.companylogo" [src]="rep.companylogo">
+    </ion-thumbnail>
+    <h4>About Business</h4>
+    <p>{{rep.typeofbusiness}}</p>
+    <ion-row no-padding="">
+      <ion-col no-padding="" col-6>
+        <small>Open : {{rep.weekstart.substr(0,3)}}-{{rep.weekend.substr(0,3)}}</small>
+      </ion-col>
+      <ion-col no-padding="" col-6 text-right="">
+        <small>{{rep.opentime <= 12 ? rep.opentime + 'AM' : (rep.opentime - 12) + 'PM'}}
+          -{{rep.opentime <= 12 ? rep.opentime + 'AM' : (rep.opentime - 12) + 'PM'}}</small>
+      </ion-col>
+    </ion-row>
+  </ion-item>
+
+
+  <ion-item no-padding>
+    <ion-label floating>Name</ion-label>
+    <ion-input type="text" [value]="rep.name"></ion-input>
+  </ion-item>
+
+  <ion-item no-padding>
+    <ion-label floating>Contact Number</ion-label>
+    <ion-input type="text" [value]="rep.phone"></ion-input>
+  </ion-item>
+
+  <ion-item no-padding (tap)="changelogo()" class="chooselogo">
+    <ion-thumbnail item-start>
+      <img *ngIf="!rep?.companylogo" src="https://www.designevo.com/res/templates/thumb_small/yellow-signboard-and-colorful-hamburger.png">
+      <img *ngIf="rep?.companylogo" [src]="rep.companylogo">
+    </ion-thumbnail>
+    <ion-label >Change Logo</ion-label>
+  </ion-item>
+
+  <ion-item no-padding>
+    <ion-label floating>Store Name</ion-label>
+    <ion-input type="text" [value]="rep.companyname"></ion-input>
+  </ion-item>
+
+  <ion-item no-padding>
+    <ion-label floating>Type of Business</ion-label>
+    <ion-input type="text" [value]="rep.typeofbusiness"></ion-input>
+  </ion-item>
+
+  <ion-item no-padding>
+    <ion-label floating>Locality / Street</ion-label>
+    <ion-input type="email" [value]="rep.street"></ion-input>
+  </ion-item>
+
+  <!--<ion-item no-padding>-->
+  <!--<ion-label floating>Email</ion-label>-->
+  <!--<ion-input type="email" [value]="rep"></ion-input>-->
+  <!--</ion-item>-->
+
+  <p class="p_hdng">Hours of Operation</p>
+  <div class="parent">
+    <div class="child">
+      <ion-item no-padding>
+        <ion-label></ion-label>
+        <ion-select>
+          <ion-option value="1" [selected]="rep.opentime === '1'">1 AM</ion-option>
+          <ion-option value="2" [selected]="rep.opentime === '2'">2 AM</ion-option>
+          <ion-option value="3" [selected]="rep.opentime === '3'">3 AM</ion-option>
+          <ion-option value="4" [selected]="rep.opentime === '4'">4 AM</ion-option>
+          <ion-option value="5" [selected]="rep.opentime === '5'">5 AM</ion-option>
+          <ion-option value="6" [selected]="rep.opentime === '6'">6 AM</ion-option>
+          <ion-option value="7" [selected]="rep.opentime === '7'">7 AM</ion-option>
+          <ion-option value="8" [selected]="rep.opentime === '8'">8 AM</ion-option>
+          <ion-option value="9" [selected]="rep.opentime === '9'">9 AM</ion-option>
+          <ion-option value="10" [selected]="rep.opentime === '10'">10 AM</ion-option>
+          <ion-option value="11" [selected]="rep.opentime === '11'">11 AM</ion-option>
+          <ion-option value="12" [selected]="rep.opentime === '12'">12 PM</ion-option>
+          <ion-option value="13" [selected]="rep.opentime === '13'">1 PM</ion-option>
+          <ion-option value="14" [selected]="rep.opentime === '14'">2 PM</ion-option>
+          <ion-option value="15" [selected]="rep.opentime === '15'">3 PM</ion-option>
+          <ion-option value="16" [selected]="rep.opentime === '16'">4 PM</ion-option>
+          <ion-option value="17" [selected]="rep.opentime === '17'">5 PM</ion-option>
+          <ion-option value="18" [selected]="rep.opentime === '18'">6 PM</ion-option>
+          <ion-option value="19" [selected]="rep.opentime === '19'">7 PM</ion-option>
+          <ion-option value="20" [selected]="rep.opentime === '20'">8 PM</ion-option>
+          <ion-option value="21" [selected]="rep.opentime === '21'">9 PM</ion-option>
+          <ion-option value="22" [selected]="rep.opentime === '22'">10 PM</ion-option>
+          <ion-option value="23" [selected]="rep.opentime === '23'">11 PM</ion-option>
+          <ion-option value="24" [selected]="rep.opentime === '24'">12 PM</ion-option>
+        </ion-select>
+      </ion-item>
+    </div>
+
+    <div class="middle">
+      to
+    </div>
+
+    <div class="child">
+      <ion-item no-padding>
+        <ion-label></ion-label>
+        <ion-select>
+          <ion-option value="1" [selected]="rep.closedtime === '1'">1 AM</ion-option>
+          <ion-option value="2" [selected]="rep.closedtime === '2'">2 AM</ion-option>
+          <ion-option value="3" [selected]="rep.closedtime === '3'">3 AM</ion-option>
+          <ion-option value="4" [selected]="rep.closedtime === '4'">4 AM</ion-option>
+          <ion-option value="5" [selected]="rep.closedtime === '5'">5 AM</ion-option>
+          <ion-option value="6" [selected]="rep.closedtime === '6'">6 AM</ion-option>
+          <ion-option value="7" [selected]="rep.closedtime === '7'">7 AM</ion-option>
+          <ion-option value="8" [selected]="rep.closedtime === '8'">8 AM</ion-option>
+          <ion-option value="9" [selected]="rep.closedtime === '9'">9 AM</ion-option>
+          <ion-option value="10" [selected]="rep.closedtime === '10'">10 AM</ion-option>
+          <ion-option value="11" [selected]="rep.closedtime === '11'">11 AM</ion-option>
+          <ion-option value="12" [selected]="rep.closedtime === '12'">12 PM</ion-option>
+          <ion-option value="13" [selected]="rep.closedtime === '13'">1 PM</ion-option>
+          <ion-option value="14" [selected]="rep.closedtime === '14'">2 PM</ion-option>
+          <ion-option value="15" [selected]="rep.closedtime === '15'">3 PM</ion-option>
+          <ion-option value="16" [selected]="rep.closedtime === '16'">4 PM</ion-option>
+          <ion-option value="17" [selected]="rep.closedtime === '17'">5 PM</ion-option>
+          <ion-option value="18" [selected]="rep.closedtime === '18'">6 PM</ion-option>
+          <ion-option value="19" [selected]="rep.closedtime === '19'">7 PM</ion-option>
+          <ion-option value="20" [selected]="rep.closedtime === '20'">8 PM</ion-option>
+          <ion-option value="21" [selected]="rep.closedtime === '21'">9 PM</ion-option>
+          <ion-option value="22" [selected]="rep.closedtime === '22'">10 PM</ion-option>
+          <ion-option value="23" [selected]="rep.closedtime === '23'">11 PM</ion-option>
+          <ion-option value="24" [selected]="rep.closedtime === '24'">12 PM</ion-option>
+        </ion-select>
+      </ion-item>
+    </div>
+
+  </div>
+
+  <p class="p_hdng">Days Open</p>
+  <div class="parent">
+    <div class="child">
+      <ion-item no-padding>
+        <ion-label></ion-label>
+        <ion-select>
+          <ion-option value="monday" [selected]="rep.weekstart === 'monday'">Monday</ion-option>
+          <ion-option value="tuesday" [selected]="rep.weekstart === 'tuesday'">Tuesday</ion-option>
+          <ion-option value="wednesday" [selected]="rep.weekstart === 'wednesday'">Wednesday</ion-option>
+          <ion-option value="thursday" [selected]="rep.weekstart === 'thursday'">Thursday</ion-option>
+          <ion-option value="friday" [selected]="rep.weekstart == 'friday'">Friday</ion-option>
+          <ion-option value="saturday" [selected]="rep.weekstart == 'saturday'">Saturday</ion-option>
+          <ion-option value="sunday" [selected]="rep.weekstart == 'sunday'">Sunday</ion-option>
+        </ion-select>
+      </ion-item>
+    </div>
+
+    <div class="middle">
+      to
+    </div>
+
+    <div class="child">
+      <ion-item no-padding>
+        <ion-label></ion-label>
+        <ion-select>
+          <ion-option value="monday" [selected]="rep.weekend == 'monday'">Monday</ion-option>
+          <ion-option value="tuesday" [selected]="rep.weekend == 'tuesday'">Tuesday</ion-option>
+          <ion-option value="wednesday" [selected]="rep.weekend == 'wednesday'">Wednesday</ion-option>
+          <ion-option value="thursday" [selected]="rep.weekend == 'thursday'">Thursday</ion-option>
+          <ion-option value="friday" [selected]="rep.weekend == 'friday'">Friday</ion-option>
+          <ion-option value="saturday" [selected]="rep.weekend == 'saturday'">Saturday</ion-option>
+          <ion-option value="sunday" [selected]="rep.weekend == 'sunday'">Sunday</ion-option>
+        </ion-select>
+      </ion-item>
+    </div>
+
+  </div>
+
+  <ion-item no-padding>
+    <ion-label floating>Contact No</ion-label>
+    <ion-input type="tel" [value]="rep.contactno"></ion-input>
+  </ion-item>
+
+  <ion-item no-padding>
+    <ion-label floating>Fax</ion-label>
+    <ion-input type="tel" [value]="rep.fax"></ion-input>
+  </ion-item>
+
+  <ion-item no-padding>
+    <ion-label floating>Website</ion-label>
+    <ion-input type="text" [value]="rep.companywebsite"></ion-input>
+  </ion-item>
+  <ion-item no-padding>
+    <ion-label floating>Years in Business</ion-label>
+    <ion-input type="text" [value]="rep.experience"></ion-input>
+  </ion-item>
+
+  <div class="btns_wrapper">
+    <button ion-button color="primaryGrad" mode="ios" (tap)="onSaveDetails()">
+      Save
+    </button>
+
+    <button ion-button color="primaryGrad" mode="ios" (tap)="changepassword()">
+      Change Password
+    </button>
+
+    <button ion-button color="danger" outline mode="ios" icon-left="" (tap)="logout()">
+      <ion-icon name="log-out"></ion-icon>
+      Logout
+    </button>
+  </div>
+</ion-content>
+
+/////////////////////////////////////////////////Buyer///////////////////////////////////
+<ion-content padding *ngIf="navParams.get('role') === 'buyer'">
+  <ion-item no-lines="" no-padding="" class="top_profile">
+    <ion-thumbnail item-start>
+      <img *ngIf="!buyer?.profilepic" src="https://randomuser.me/api/portraits/men/9.jpg">
+      <img *ngIf="buyer?.profilepic" [src]="buyer.profilepic" alt="">
+      <p>{{buyer.name}}</p>
+      <small>User ID : {{buyer.email}}</small>
+    </ion-thumbnail>
+    <h2>{{buyer.companyname}}</h2>
+    <p>{{buyer.contactno}}</p>
+    <button ion-button mode="ios" color="primaryGrad" full (tap)="ProfilePicChange()">Change Picture</button>
+  </ion-item>
+
+  <!--  <ion-list-header mode="ios" no-lines="" margin-top="">-->
+  <!--    About Business-->
+  <!--  </ion-list-header>-->
+
+  <ion-item no-lines="" no-padding="" class="business_item">
+    <ion-thumbnail item-start>
+      <img *ngIf="!buyer?.companylogo"
+           src="https://www.designevo.com/res/templates/thumb_small/yellow-signboard-and-colorful-hamburger.png">
+      <img *ngIf="buyer?.companylogo" [src]="buyer.companylogo">
+    </ion-thumbnail>
+    <h4>About Business</h4>
+    <p>{{buyer.typeofbusiness}}</p>
+    <ion-row no-padding="">
+      <ion-col no-padding="" col-6>
+        <small>Open : {{buyer.weekstart.substr(0,3)}}-{{buyer.weekend.substr(0,3)}}</small>
+      </ion-col>
+      <ion-col no-padding="" col-6 text-right="">
+        <small>{{buyer.opentime <= 12 ? buyer.opentime + 'AM' : (buyer.opentime - 12) + 'PM'}}
+          -{{buyer.opentime <= 12 ? buyer.opentime + 'AM' : (buyer.opentime - 12) + 'PM'}}</small>
+      </ion-col>
+    </ion-row>
+  </ion-item>
+
+
+  <ion-item no-padding>
+    <ion-label floating>Name</ion-label>
+    <ion-input type="text" [value]="buyer.name"></ion-input>
+  </ion-item>
+
+  <ion-item no-padding>
+    <ion-label floating>Contact Number</ion-label>
+    <ion-input type="text" [value]="buyer.contactno"></ion-input>
+  </ion-item>
+
+  <ion-item no-padding (tap)="changelogo()" class="chooselogo">
+    <ion-thumbnail item-start>
+      <img *ngIf="!buyer?.companylogo" src="https://www.designevo.com/res/templates/thumb_small/yellow-signboard-and-colorful-hamburger.png">
+      <img *ngIf="buyer?.companylogo" [src]="buyer.companylogo">
+    </ion-thumbnail>
+    <ion-label>Change Logo</ion-label>
+  </ion-item>
+
+  <ion-item no-padding>
+    <ion-label floating>Store Name</ion-label>
+    <ion-input type="text" [value]="buyer.business"></ion-input>
+  </ion-item>
+
+  <ion-item no-padding>
+    <ion-label floating>Type of Business</ion-label>
+    <ion-input type="text" [value]="buyer.typeofbusiness"></ion-input>
+  </ion-item>
+
+  <ion-item no-padding>
+    <ion-label floating>Locality / Street</ion-label>
+    <ion-input type="email" [value]="buyer.street"></ion-input>
+  </ion-item>
+
+  <!--<ion-item no-padding>-->
+  <!--<ion-label floating>Email</ion-label>-->
+  <!--<ion-input type="email" [value]="rep"></ion-input>-->
+  <!--</ion-item>-->
+
+  <p class="p_hdng">Hours of Operation</p>
+  <div class="parent">
+    <div class="child">
+      <ion-item no-padding>
+        <ion-label></ion-label>
+        <ion-select>
+          <ion-option value="1" [selected]="buyer.opentime === '1'">1 AM</ion-option>
+          <ion-option value="2" [selected]="buyer.opentime === '2'">2 AM</ion-option>
+          <ion-option value="3" [selected]="buyer.opentime === '3'">3 AM</ion-option>
+          <ion-option value="4" [selected]="buyer.opentime === '4'">4 AM</ion-option>
+          <ion-option value="5" [selected]="buyer.opentime === '5'">5 AM</ion-option>
+          <ion-option value="6" [selected]="buyer.opentime === '6'">6 AM</ion-option>
+          <ion-option value="7" [selected]="buyer.opentime === '7'">7 AM</ion-option>
+          <ion-option value="8" [selected]="buyer.opentime === '8'">8 AM</ion-option>
+          <ion-option value="9" [selected]="buyer.opentime === '9'">9 AM</ion-option>
+          <ion-option value="10" [selected]="buyer.opentime === '10'">10 AM</ion-option>
+          <ion-option value="11" [selected]="buyer.opentime === '11'">11 AM</ion-option>
+          <ion-option value="12" [selected]="buyer.opentime === '12'">12 PM</ion-option>
+          <ion-option value="13" [selected]="buyer.opentime === '13'">1 PM</ion-option>
+          <ion-option value="14" [selected]="buyer.opentime === '14'">2 PM</ion-option>
+          <ion-option value="15" [selected]="buyer.opentime === '15'">3 PM</ion-option>
+          <ion-option value="16" [selected]="buyer.opentime === '16'">4 PM</ion-option>
+          <ion-option value="17" [selected]="buyer.opentime === '17'">5 PM</ion-option>
+          <ion-option value="18" [selected]="buyer.opentime === '18'">6 PM</ion-option>
+          <ion-option value="19" [selected]="buyer.opentime === '19'">7 PM</ion-option>
+          <ion-option value="20" [selected]="buyer.opentime === '20'">8 PM</ion-option>
+          <ion-option value="21" [selected]="buyer.opentime === '21'">9 PM</ion-option>
+          <ion-option value="22" [selected]="buyer.opentime === '22'">10 PM</ion-option>
+          <ion-option value="23" [selected]="buyer.opentime === '23'">11 PM</ion-option>
+          <ion-option value="24" [selected]="buyer.opentime === '24'">12 PM</ion-option>
+        </ion-select>
+      </ion-item>
+    </div>
+
+    <div class="middle">
+      to
+    </div>
+
+    <div class="child">
+      <ion-item no-padding>
+        <ion-label></ion-label>
+        <ion-select>
+          <ion-option value="1" [selected]="buyer.closedtime === '1'">1 AM</ion-option>
+          <ion-option value="2" [selected]="buyer.closedtime === '2'">2 AM</ion-option>
+          <ion-option value="3" [selected]="buyer.closedtime === '3'">3 AM</ion-option>
+          <ion-option value="4" [selected]="buyer.closedtime === '4'">4 AM</ion-option>
+          <ion-option value="5" [selected]="buyer.closedtime === '5'">5 AM</ion-option>
+          <ion-option value="6" [selected]="buyer.closedtime === '6'">6 AM</ion-option>
+          <ion-option value="7" [selected]="buyer.closedtime === '7'">7 AM</ion-option>
+          <ion-option value="8" [selected]="buyer.closedtime === '8'">8 AM</ion-option>
+          <ion-option value="9" [selected]="buyer.closedtime === '9'">9 AM</ion-option>
+          <ion-option value="10" [selected]="buyer.closedtime === '10'">10 AM</ion-option>
+          <ion-option value="11" [selected]="buyer.closedtime === '11'">11 AM</ion-option>
+          <ion-option value="12" [selected]="buyer.closedtime === '12'">12 PM</ion-option>
+          <ion-option value="13" [selected]="buyer.closedtime === '13'">1 PM</ion-option>
+          <ion-option value="14" [selected]="buyer.closedtime === '14'">2 PM</ion-option>
+          <ion-option value="15" [selected]="buyer.closedtime === '15'">3 PM</ion-option>
+          <ion-option value="16" [selected]="buyer.closedtime === '16'">4 PM</ion-option>
+          <ion-option value="17" [selected]="buyer.closedtime === '17'">5 PM</ion-option>
+          <ion-option value="18" [selected]="buyer.closedtime === '18'">6 PM</ion-option>
+          <ion-option value="19" [selected]="buyer.closedtime === '19'">7 PM</ion-option>
+          <ion-option value="20" [selected]="buyer.closedtime === '20'">8 PM</ion-option>
+          <ion-option value="21" [selected]="buyer.closedtime === '21'">9 PM</ion-option>
+          <ion-option value="22" [selected]="buyer.closedtime === '22'">10 PM</ion-option>
+          <ion-option value="23" [selected]="buyer.closedtime === '23'">11 PM</ion-option>
+          <ion-option value="24" [selected]="buyer.closedtime === '24'">12 PM</ion-option>
+        </ion-select>
+      </ion-item>
+    </div>
+
+  </div>
+
+  <p class="p_hdng">Days Open</p>
+  <div class="parent">
+    <div class="child">
+      <ion-item no-padding>
+        <ion-label></ion-label>
+        <ion-select>
+          <ion-option value="monday" [selected]="buyer.weekstart === 'monday'">Monday</ion-option>
+          <ion-option value="tuesday" [selected]="buyer.weekstart === 'tuesday'">Tuesday</ion-option>
+          <ion-option value="wednesday" [selected]="buyer.weekstart === 'wednesday'">Wednesday</ion-option>
+          <ion-option value="thursday" [selected]="buyer.weekstart === 'thursday'">Thursday</ion-option>
+          <ion-option value="friday" [selected]="buyer.weekstart == 'friday'">Friday</ion-option>
+          <ion-option value="saturday" [selected]="buyer.weekstart == 'saturday'">Saturday</ion-option>
+          <ion-option value="sunday" [selected]="buyer.weekstart == 'sunday'">Sunday</ion-option>
+        </ion-select>
+      </ion-item>
+    </div>
+
+    <div class="middle">
+      to
+    </div>
+
+    <div class="child">
+      <ion-item no-padding>
+        <ion-label></ion-label>
+        <ion-select>
+          <ion-option value="monday" [selected]="buyer.weekend == 'monday'">Monday</ion-option>
+          <ion-option value="tuesday" [selected]="buyer.weekend == 'tuesday'">Tuesday</ion-option>
+          <ion-option value="wednesday" [selected]="buyer.weekend == 'wednesday'">Wednesday</ion-option>
+          <ion-option value="thursday" [selected]="buyer.weekend == 'thursday'">Thursday</ion-option>
+          <ion-option value="friday" [selected]="buyer.weekend == 'friday'">Friday</ion-option>
+          <ion-option value="saturday" [selected]="buyer.weekend == 'saturday'">Saturday</ion-option>
+          <ion-option value="sunday" [selected]="buyer.weekend == 'sunday'">Sunday</ion-option>
+        </ion-select>
+      </ion-item>
+    </div>
+
+  </div>
+
+  <ion-item no-padding>
+    <ion-label floating>Contact No</ion-label>
+    <ion-input type="tel" [value]="buyer.contactno"></ion-input>
+  </ion-item>
+
+  <ion-item no-padding>
+    <ion-label floating>Fax</ion-label>
+    <ion-input type="tel" [value]="buyer.fax"></ion-input>
+  </ion-item>
+
+  <ion-item no-padding>
+    <ion-label floating>Website</ion-label>
+    <ion-input type="text" [value]="buyer.companywebsite"></ion-input>
+  </ion-item>
+  <ion-item no-padding>
+    <ion-label floating>Years in Business</ion-label>
+    <ion-input type="text" [value]="buyer.experience"></ion-input>
+  </ion-item>
+
+  <div class="btns_wrapper">
+    <button ion-button color="primaryGrad" mode="ios" (tap)="onSaveDetails()">
+      Save
+    </button>
+
+    <button ion-button color="primaryGrad" mode="ios" (tap)="changepassword()">
+      Change Password
+    </button>
+
+    <button ion-button color="danger" outline mode="ios" icon-left="" (tap)="logout()">
+      <ion-icon name="log-out"></ion-icon>
+      Logout
+    </button>
+  </div>
+</ion-content>

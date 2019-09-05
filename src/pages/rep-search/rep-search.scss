@@ -1,0 +1,104 @@
+page-rep-search {
+  .toolbar .searchbar {
+    .searchbar-input {
+      background: rgb(255, 255, 255);
+      color: #333;
+    }
+
+
+    ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+      color: #8c8c8c !important;
+    }
+
+    :-ms-input-placeholder { /* Internet Explorer 10-11 */
+      color: #8c8c8c !important;
+    }
+
+    ::-ms-input-placeholder { /* Microsoft Edge */
+      color: #8c8c8c !important;
+    }
+
+    .searchbar-search-icon {
+      background-image: url("data:image/svg+xml;charset=utf-8,<svg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2013%2013'><path%20fill='rgba(0,%200,%200,%200.5)'%20d='M5,1c2.2,0,4,1.8,4,4S7.2,9,5,9S1,7.2,1,5S2.8,1,5,1%20M5,0C2.2,0,0,2.2,0,5s2.2,5,5,5s5-2.2,5-5S7.8,0,5,0%20L5,0z'/><line%20stroke='rgba(0,%200,%200,%200.5)'%20stroke-miterlimit='10'%20x1='12.6'%20y1='12.6'%20x2='8.2'%20y2='8.2'/></svg>");
+    }
+
+  }
+
+  #map {
+    width: 100%;
+    height: 100%;
+
+    .gmnoprint {
+      display: none;
+    }
+
+    button.gm-control-active.gm-fullscreen-control {
+      display: none;
+    }
+  }
+
+  .cards {
+    position: fixed;
+    z-index: 511111;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 8px;
+
+    ion-card {
+      margin: 8px;
+      width: 100%;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.1);
+
+      .imgs_wrapper {
+        position: relative;
+
+        img {
+          display: flex;
+        }
+
+        p {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          text-align: left;
+          background-color: rgba(0, 0, 0, 0.42);
+          color: white;
+          padding: 8px;
+        }
+      }
+
+      ion-card-content {
+        padding: 8px;
+
+        ion-card-title {
+          font-size: 16px;
+          color: map_get($colors, primary);
+          text-align: left;
+        }
+
+        .address {
+          color: #818181;
+          text-align: left;
+          display: flex;
+
+          .icon {
+            width: 35px;
+            padding-top: 3px;
+            font-size: 18px;
+          }
+
+          p {
+            color: #818181;
+          }
+        }
+      }
+    }
+  }
+}
+

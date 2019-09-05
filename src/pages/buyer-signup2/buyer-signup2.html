@@ -1,0 +1,52 @@
+<ion-header no-border="">
+  <ion-navbar transparent="">
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+
+  <ion-item no-padding>
+    <ion-label floating>Business Name</ion-label>
+    <ion-input type="text" [(ngModel)]="buyer.business"></ion-input>
+  </ion-item>
+
+  <ion-item no-padding>
+    <ion-label floating>Type of Business</ion-label>
+    <ion-input type="text" [(ngModel)]="buyer.typeofbusiness"></ion-input>
+  </ion-item>
+
+
+  <ion-item no-padding>
+    <ion-label floating>Locality / Street</ion-label>
+    <ion-input type="text" [(ngModel)]="buyer.street"></ion-input>
+  </ion-item>
+
+  <ion-item no-padding>
+    <ion-label floating>City</ion-label>
+    <ion-input type="text" [(ngModel)]="buyer.city"></ion-input>
+  </ion-item>
+
+  <ion-item no-padding>
+    <ion-label floating>(+91)-9876543210</ion-label>
+    <ion-input type="number" [(ngModel)]="buyer.businesscontact"></ion-input>
+  </ion-item>
+
+  <ion-item no-padding>
+    <ion-label floating>Fax <small style="margin-left: 4px">(Min. 10 Length)</small></ion-label>
+    <ion-input type="number" [(ngModel)]="buyer.fax"></ion-input>
+  </ion-item>
+
+  <ion-item no-padding>
+    <ion-label floating>TAX ID <small style="margin-left: 4px">(optional)</small></ion-label>
+    <ion-input type="text" [(ngModel)]="buyer.taxid"></ion-input>
+  </ion-item>
+
+</ion-content>
+
+<ion-footer no-border="">
+  <button ion-button icon-right="" mode="ios" clear class="next_btn" (tap)="signup3()">
+    Next
+    <ion-icon name="ios-arrow-forward"></ion-icon>
+  </button>
+</ion-footer>

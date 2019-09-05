@@ -1,0 +1,25 @@
+<ion-header no-border>
+  <ion-navbar color="primary">
+    <ion-title>Verify Code</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list-header mode="ios" no-lines no-padding class="primary_heading">
+    Enter the reset code
+  </ion-list-header>
+  <small>
+    Please check your mail, we have sent a reset code to your registered email address.
+  </small>
+
+  <ion-item no-padding>
+    <ion-label floating>Reset Code</ion-label>
+    <ion-input type="tel"></ion-input>
+  </ion-item>
+
+  
+  <button ion-button color="primaryGrad" mode="ios" (tap)="chnagepass()">
+    Verify Code
+  </button>
+
+</ion-content>

@@ -1,0 +1,23 @@
+page-rep-add-buyer-nofound {
+  .scroll-content {
+    background-color: #f8f8f8;
+
+    ion-searchbar.searchbar {
+      background-color: #f8f8f8;
+      border-bottom: 0;
+    }
+    .wrapper {
+      text-align: center;
+      padding: 32px;
+      h5{
+        color: #615e5e;
+      }
+      p{
+        color: #8a8a8a;
+      }
+      button{
+        width: 70%;
+      }
+    }
+  }
+}

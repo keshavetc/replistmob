@@ -1,0 +1,63 @@
+<ion-header no-border="">
+  <ion-navbar color="primary">
+    <ion-title>Add Items</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <div class="image_upload" (tap)="chooseimage()">
+    <ion-icon name="camera"></ion-icon>
+    <small>Upload an Image</small>
+  </div>
+
+  <ion-item no-padding>
+    <ion-label floating>Name of Item</ion-label>
+    <ion-input type="text" value="" [(ngModel)]="repadditem.name"></ion-input>
+  </ion-item>
+
+  <ion-item no-padding>
+    <ion-label floating>Item Description</ion-label>
+    <ion-textarea type="text"
+                  value="" [(ngModel)]="repadditem.description"></ion-textarea>
+  </ion-item>
+
+  <ion-item no-padding>
+    <ion-label floating>Pack Size</ion-label>
+    <ion-input type="text" value="" [(ngModel)]="repadditem.size"></ion-input>
+   <!--  <div class="icrmnt_dcrmnt_btns" item-end="">
+      <button ion-button icon-only="" outline mode="ios">
+        <ion-icon name="remove"></ion-icon>
+      </button>
+
+      <p> 2</p> -->
+    <!--   <button ion-button icon-only="" outline mode="ios">
+        <ion-icon name="add"></ion-icon>
+      </button>
+     </div>
+  --> </ion-item>
+
+
+  <ion-item no-padding class="pricebox">
+    <ion-label floating>Price Per Box</ion-label>
+    <ion-input type="number" value="" [(ngModel)]="repadditem.price"></ion-input>
+  </ion-item>
+
+  <div class="bottom_btns">
+
+    <button ion-button color="dark" outline mode="ios" >
+      <span> Inventory </span>   
+      <span> </span>
+      <ion-input type="text" value="" [(ngModel)]="repadditem.inventory"></ion-input>
+ 
+    </button>
+
+    <button ion-button color="primaryGrad" mode="ios" (tap)="additem()">
+      Add Item
+    </button>
+  </div>
+<ion-item *ngFor="let item of Items">
+  {{items}}
+</ion-item>
+
+</ion-content>

@@ -1,0 +1,37 @@
+page-buyer-rep {
+  .scroll-content {
+    background-color: #f8f8f8;
+
+    ion-searchbar.searchbar {
+      background-color: #f8f8f8;
+      border-bottom: 0;
+    }
+
+    ion-list {
+      padding: 8px;
+      background-color: transparent;
+      ion-item {
+        border-radius: 8px;
+        overflow: hidden;
+        margin-bottom: 6px;
+        &:last-child{
+          margin-bottom: 0;
+        }
+        ion-label.label {
+          white-space: normal;
+
+          p {
+            font-size: 14px;
+            color: #a1a1a1;
+            margin: 4px 0;
+            &:last-child{
+              margin-bottom: 0;
+            }
+          }
+        }
+      }
+
+    }
+  }
+
+}

@@ -1,0 +1,18 @@
+page-rep-message {
+  .scroll-content {
+    background-color: #f8f8f8;
+    textarea{
+      width: 100%;
+      border-radius: 6px;
+      border: 0;
+      box-shadow: 1px 3px 7px rgba(0, 0, 0, 0.03);
+      min-height: 150px;
+      padding: 8px;
+    }
+    button{
+      width: 80%;
+      margin: 32px auto 0;
+      display: table;
+    }
+  }
+}

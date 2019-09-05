@@ -1,0 +1,35 @@
+<ion-header no-border="">
+  <ion-navbar transparent="">
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <h2 class="hdng">Rep</h2>
+
+  <div class="img_wrapper">
+    <img *ngIf="!rep?.pic" src="https://randomuser.me/api/portraits/men/9.jpg" alt="">
+    <img *ngIf="rep?.pic" [src]="rep.pic" alt="">
+  </div>
+  <button ion-button color="primaryGrad" mode="ios" small class="chng_pic" (tap)="addpicture()">
+    Add profile picture
+  </button>
+
+
+  <ion-item no-padding>
+    <ion-label floating>Name</ion-label>
+    <ion-input type="text" [(ngModel)]="rep.name"></ion-input>
+  </ion-item>
+  <ion-item no-padding>
+    <ion-label floating>Phone Number</ion-label>
+    <ion-input type="number" [(ngModel)]="rep.phone"></ion-input>
+  </ion-item>
+
+</ion-content>
+
+<ion-footer no-border="">
+  <button ion-button icon-right="" mode="ios" clear class="next_btn" (tap)="signup2()">
+    Next
+    <ion-icon name="ios-arrow-forward"></ion-icon>
+  </button>
+</ion-footer>

@@ -1,0 +1,41 @@
+page-buyer-rep-details {
+  .wrapper {
+    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 6px;
+    overflow: hidden;
+    text-align: center;
+  }
+  ion-item {
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 6px;
+    background-color: transparent;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    ion-thumbnail[item-start] {
+      margin-top: 12px;
+      justify-self: unset;
+      align-self: self-start;
+      img {
+        background-color: white;
+      }
+    }
+
+    ion-label.label {
+      white-space: normal;
+
+      p {
+        font-size: 14px;
+        color: #a1a1a1;
+        margin: 4px 0;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+}

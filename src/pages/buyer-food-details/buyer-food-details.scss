@@ -1,0 +1,69 @@
+page-buyer-food-details {
+  ion-badge.badge{
+    height: 20px;
+    width: 20px;
+    border-radius: 100%;
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+  }
+  .top {
+    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.28);
+    border-radius: 6px;
+    overflow: hidden;
+    text-align: center;
+  }
+  .icrmnt_dcrmnt_btns[item-end] {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 16px 0 0 0 !important;
+
+    button.button {
+      width: 30px;
+      height: 30px;
+      border-radius: 100%;
+      margin: 0;
+      font-size: 11px;
+    }
+
+    p {
+      margin: 0 8px;
+    }
+  }
+
+  .pricebox{
+    &:after{
+      position: absolute;
+      left: 0;
+      bottom: 9px;
+      content: '£';
+      font-size: 16px;
+    }
+    input{
+      padding-left: 16px;
+    }
+  }
+
+  .bottom_btns {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+
+    button {
+      width: 100%;
+    }
+
+    button[color="dark"] {
+      span.button-inner {
+        justify-content: space-between;
+      }
+    }
+  }
+}
+

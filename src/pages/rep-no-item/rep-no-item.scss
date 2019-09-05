@@ -1,0 +1,32 @@
+page-rep-no-item {
+  h3{
+    color: map_get($colors, primary);
+    text-align: center;
+    font-size: 18px;
+    margin-top: 24px !important;
+  }
+  .bottom_btns {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+
+    p{
+      color: #6b6b6b;
+    }
+    .item-radio{
+      ion-label {
+        font-size: 13px;
+      }
+    }
+
+    button {
+      width: 100%;
+    }
+
+    button[color="dark"] {
+      span.button-inner {
+        justify-content: space-between;
+      }
+    }
+  }
+}

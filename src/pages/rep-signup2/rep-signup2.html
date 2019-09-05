@@ -1,0 +1,58 @@
+<ion-header no-border="">
+  <ion-navbar transparent="">
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+
+  <ion-item no-padding>
+    <ion-label floating>Company Name</ion-label>
+    <ion-input type="text" [(ngModel)]="rep.companyname"></ion-input>
+  </ion-item>
+
+  <ion-item no-padding>
+    <ion-label floating>Type of Business</ion-label>
+    <ion-input type="text" [(ngModel)]="rep.typeofbusiness"></ion-input>
+  </ion-item>
+
+
+  <ion-item no-padding>
+    <ion-label floating>Locality / Street</ion-label>
+    <ion-input type="text" [(ngModel)]="rep.street"></ion-input>
+  </ion-item>
+
+  <ion-item no-padding>
+    <ion-label floating>City</ion-label>
+    <ion-input type="text" [(ngModel)]="rep.city"></ion-input>
+  </ion-item>
+
+  <ion-item no-padding>
+    <ion-label floating>(+91)-9876543210</ion-label>
+    <ion-input type="number" [(ngModel)]="rep.contactno"></ion-input>
+  </ion-item>
+
+  <ion-item no-padding>
+    <ion-label floating>Fax</ion-label>
+    <ion-input type="number" [(ngModel)]="rep.fax"></ion-input>
+  </ion-item>
+
+  <ion-item no-padding>
+    <ion-label floating>TAX ID <small style="margin-left: 4px">(optional)</small></ion-label>
+    <ion-input type="text" [(ngModel)]="rep.taxid"></ion-input>
+  </ion-item>
+
+  <ion-item no-padding>
+    <ion-label floating>Website <small style="margin-left: 4px">(optional)</small></ion-label>
+    <ion-input type="text" [(ngModel)]="rep.companywebsite"></ion-input>
+  </ion-item>
+
+
+</ion-content>
+
+<ion-footer no-border="">
+  <button ion-button icon-right="" mode="ios" clear class="next_btn" (tap)="signup3()">
+    Next
+    <ion-icon name="ios-arrow-forward"></ion-icon>
+  </button>
+</ion-footer>

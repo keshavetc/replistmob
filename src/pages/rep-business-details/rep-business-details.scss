@@ -1,0 +1,64 @@
+page-rep-business-details {
+  .scroll-content {
+    //background-color: #f8f8f8;
+
+    ion-item {
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 6px;
+      background-color: transparent;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      ion-thumbnail[item-start] {
+        margin-top: 12px;
+        justify-self: unset;
+        align-self: self-start;
+        img {
+          background-color: white;
+        }
+      }
+
+      ion-label.label {
+        white-space: normal;
+
+        p {
+          font-size: 14px;
+          color: #a1a1a1;
+          margin: 4px 0;
+
+          &:last-child {
+            margin-bottom: 0;
+          }
+        }
+      }
+    }
+
+    .btns_area{
+      padding: 16px;
+      button{
+        width: 100%;
+        margin-bottom: 16px;
+        height: 52px;
+        &:last-child{
+          margin-bottom: 0;
+        }
+        span.button-inner {
+          display: flex;
+          //justify-content: space-between;
+        }
+        ion-icon{
+          font-size: 30px;
+          width: 50px;
+          text-align: center;
+          position: relative;
+          right: -6px;
+        }
+      }
+    }
+
+
+  }
+}

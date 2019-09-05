@@ -1,0 +1,28 @@
+<ion-header no-border="">
+  <ion-toolbar color="primary">
+    <ion-buttons left="" style="margin-left: 8px" (tap)="home()">
+      <button ion-button icon-only="">
+        <ion-icon name="home"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <h3>Package has been purchased and added to your account.</h3>
+
+  <div class="bottom_btns">
+
+    <button ion-button color="dark" outline mode="ios" disabled margin-bottom="">
+      <span> Items Left </span>
+      <span> (20/20)</span>
+    </button>
+
+
+    <button ion-button color="primaryGrad" margin-top="" mode="ios" (tap)="home()">
+      Home
+    </button>
+  </div>
+
+</ion-content>

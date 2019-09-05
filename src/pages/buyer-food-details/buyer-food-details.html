@@ -1,0 +1,56 @@
+<ion-header no-border="">
+  <ion-navbar color="primary">
+    <ion-buttons right style="margin-right: 6px">
+      <button ion-button icon-only="" (tap)="cart()">
+        <ion-icon name="cart"></ion-icon>
+        <ion-badge color="light">2</ion-badge>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <div class="top">
+    <img
+      src="https://www.bbb.org/globalassets/local-bbbs/council-113/media/ad-truth/ad-truth-hero-630x320.png"
+      alt=""
+    />
+    <p>Product Name</p>
+  </div>
+
+  <p text-center="">Price: $15 (per box)</p>
+
+
+  <ion-item no-padding>
+    <ion-label floating>Order Quantity (Boxes)</ion-label>
+    <ion-input type="text" value="20"></ion-input>
+    <div class="icrmnt_dcrmnt_btns" item-end="">
+      <button ion-button icon-only="" outline mode="ios">
+        <ion-icon name="remove"></ion-icon>
+      </button>
+      <p>2</p>
+      <button ion-button icon-only="" outline mode="ios">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </div>
+  </ion-item>
+
+  <ion-item no-padding>
+    <ion-label floating>Special Instruction</ion-label>
+    <ion-textarea type="text"
+                  value="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi dolores eligendi facilis molestias quasi ratione?"></ion-textarea>
+  </ion-item>
+
+
+  <div class="bottom_btns">
+
+    <button ion-button color="primaryGrad" mode="ios">
+      Add to Cart
+    </button>
+
+    <button ion-button color="primaryGrad" mode="ios" (tap)="placeorder()">
+      Place Order
+    </button>
+  </div>
+</ion-content>

@@ -1,0 +1,43 @@
+<ion-header no-border="">
+  <ion-navbar color="primary">
+    <ion-title>Blast Email</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-searchbar mode="ios" placeholder="Enter User ID"></ion-searchbar>
+  <div style="padding: 4px 8px">
+    <ion-item mode="ios" no-lines="" (tap)="checkAll()">
+      <ion-label mode="ios">Select All</ion-label>
+      <ion-checkbox mode="ios" ></ion-checkbox>
+    </ion-item>
+  </div>
+  <ion-list no-margin="" no-lines="">
+    <ion-item no-padding="" *ngFor="let buyer of buyers">
+      <ion-thumbnail item-start>
+        <img *ngIf="!buyer.buyer.profilepic" src="https://www.designevo.com/res/templates/thumb_small/yellow-signboard-and-colorful-hamburger.png">
+        <img *ngIf="buyer.buyer.profilepic" src="https://www.designevo.com/res/templates/thumb_small/yellow-signboard-and-colorful-hamburger.png">
+      </ion-thumbnail>
+      <h2>{{buyer.buyer.business}}</h2>
+      <p>{{buyer.buyer.typeofbusiness}}</p>
+
+      <button ion-button clear item-end icon-only="">
+        <label class="container">
+          <input type="checkbox" [checked]="buyer.check">
+          <span class="checkmark"></span>
+        </label>
+
+      </button>
+
+    </ion-item>
+
+  </ion-list>
+
+</ion-content>
+
+<ion-footer no-border="">
+  <button ion-button full no-margin="" color="primaryGrad" mode="ios" (tap)="email()"
+          style="border-radius: 0;min-height: 52px">
+    Proceed
+  </button>
+</ion-footer>

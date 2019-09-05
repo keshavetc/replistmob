@@ -1,0 +1,33 @@
+<ion-header no-border="">
+  <ion-navbar color="primary">
+    <ion-title>
+      REP Friends
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div style="display: flex">
+  <ion-searchbar mode="ios" placeholder="Search"[(ngModel)]="searchTerm" (ionInput)="setSearchItems($event)" (ionCancel)="getNullArray()"></ion-searchbar>
+    <button ion-button icon-right="" clear (tap)="add()">
+      Add
+      <ion-icon name="person-add"></ion-icon>
+    </button>
+  </div>
+  <ion-list no-margin="" no-lines="">
+
+    <ion-item no-padding="" (tap)="profile(i)" *ngFor="let friend of friends;let i = index">
+      <ion-thumbnail item-start>
+        <img *ngIf="!friend?.pic" [src]="profile.pic">
+        <img *ngIf="friend?.pic" [src]="friend.pic">
+      </ion-thumbnail>
+      <h2>{{friend.companyname}}</h2>
+      <p>{{friend.address}}</p>
+      <p>{{friend.contactno}}</p>
+    </ion-item>
+
+
+  </ion-list>
+
+</ion-content>
+

@@ -1,0 +1,33 @@
+<ion-content padding>
+  <div class="top">
+    <img
+      src="https://www.bbb.org/globalassets/local-bbbs/council-113/media/ad-truth/ad-truth-hero-630x320.png"
+      alt=""
+    />
+    <!-- <img
+      src="https://firebasestorage.googleapis.com/v0/b/replist-c3017.appspot.com/o/ads_logo%2FSat%20Aug%2003%202019%2018%3A48%3A51%20GMT%2B0530%20(India%20Standard%20Time)indigeneous%20cow.png?alt=media&token=9b123f47-7b38-4f4a-9599-b57cccaa9b8c"
+      alt=""
+    /> -->
+  </div>
+
+  <div class="bottom">
+    <ion-item no-padding>
+      <ion-label floating>Email</ion-label>
+      <ion-input type="email" [(ngModel)]="user_credentials.email"></ion-input>
+    </ion-item>
+    <ion-item no-padding>
+      <ion-label floating>Password</ion-label>
+      <ion-input type="Password" [(ngModel)]="user_credentials.password"></ion-input>
+    </ion-item>
+
+    <span>
+      <a (tap)="forgotpass()">Forgot Password?</a>
+    </span>
+
+    <button ion-button color="primaryGrad" mode="ios" (tap)="login()">
+      Login
+    </button>
+
+    <p>Not a member yet? <a (tap)="signup()">Sign up</a> here</p>
+  </div>
+</ion-content>

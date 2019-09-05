@@ -1,0 +1,42 @@
+<ion-header no-border="">
+  <ion-navbar transparent="">
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <h2 class="hdng">Buyer</h2>
+
+  <div class="img_wrapper">
+    <img *ngIf="!buyer?.profilepic" src="https://randomuser.me/api/portraits/men/9.jpg" alt="">
+    <img *ngIf="buyer?.profilepic" [src]="buyer.profilepic" alt="">
+  </div>
+  <button ion-button color="primaryGrad" mode="ios" small class="chng_pic" (tap)="onAddProfilePicClick()">
+    Add profile picture
+  </button>
+
+
+  <ion-item no-padding>
+    <ion-label floating>Name </ion-label>
+    <ion-input type="email" [(ngModel)]="buyer.name"></ion-input>
+  </ion-item>
+  <ion-item no-padding>
+    <ion-label floating>Position</ion-label>
+    <ion-input type="text" [(ngModel)]="buyer.position"></ion-input>
+  </ion-item>
+  <ion-item no-padding>
+    <ion-label floating>Department</ion-label>
+    <ion-input type="text" [(ngModel)]="buyer.department"></ion-input>
+  </ion-item>
+  <ion-item no-padding>
+    <ion-label floating>Phone Number<small style="margin-left: 4px">(Min. 10 Length)</small></ion-label>
+    <ion-input type="number" [(ngModel)]="buyer.contactno"></ion-input>
+  </ion-item>
+
+  <button ion-button margin-top="" no-padding="" icon-right="" mode="ios" clear class="next_btn" (tap)="signup2()">
+    Next
+    <ion-icon name="ios-arrow-forward"></ion-icon>
+  </button>
+
+</ion-content>
+

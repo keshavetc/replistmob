@@ -1,0 +1,32 @@
+page-rep-signup {
+  h2.hdng {
+    text-align: center;
+    border-bottom: 4px solid map_get($colors, primary);
+    color: map_get($colors, primary);
+    width: max-content;
+    padding: 4px 16px;
+    text-transform: uppercase;
+    display: table;
+    margin: 32px auto !important;
+  }
+  .img_wrapper {
+    display: flex;
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+    border-radius: 100%;
+    margin: auto;
+    box-shadow: 0 5px 9px rgba(0, 0, 0, 0.28);
+    img{
+      min-width: 100%;
+    }
+  }
+  .chng_pic{
+    display: table;
+    margin: 16px auto;
+    text-transform: capitalize;
+  }
+  .next_btn{
+    float: right;
+  }
+}

@@ -1,0 +1,36 @@
+page-rep-signup3 {
+  p.p_hdng {
+    color: #999999;
+    margin: 24px 0 0 0;
+  }
+  .parent {
+    display: flex;
+    .child {
+      flex: 1;
+    }
+    .middle {
+      margin: 6px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #999999;
+    }
+  }
+  ion-item{
+    ion-icon.icon{
+      font-size: 40px;
+      color: #b4b4b4;
+    }
+    .item-inner{
+      p{
+        color: #b4b4b4;
+      }
+    }
+  }
+  .next_btn{
+    float: right;
+  }
+
+}
+
+

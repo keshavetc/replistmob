@@ -1,0 +1,29 @@
+[color="primaryGrad"]{
+background: #019ef9; /* Old browsers */
+//background: -moz-linear-gradient(left, #01afef 0%, #14c8c1 100%); /* FF3.6-15 */
+//background: -webkit-linear-gradient(left, #01afef 0%,#14c8c1 100%); /* Chrome10-25,Safari5.1-6 */
+//background: linear-gradient(to right, #01afef 0%,#14c8c1 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+//filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#01afef', endColorstr='#14c8c1',GradientType=1 ); /* IE6-9 */
+border-radius: 6px;
+} 
+.primary_heading{
+    color: map-get($colors, primary );
+    font-size: 16px;
+    text-transform: capitalize;
+    font-weight: normal;
+}
+
+
+.alert-md .alert-wrapper {
+  box-shadow: none;
+  border-radius: 8px;
+}
+
+ion-navbar[transparent]{
+  button.back-button.show-back-button{
+    color: map_get($colors, primary);
+  }
+}
+ion-select{
+  max-width: 100%;
+}
