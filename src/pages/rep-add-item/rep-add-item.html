@@ -6,9 +6,10 @@
 
 <ion-content padding>
 
-  <div class="image_upload" (tap)="chooseimage()">
+  <div class="image_upload">
     <ion-icon name="camera"></ion-icon>
-    <small>Upload an Image</small>
+    <input type="file" class="file-select" accept="image/*" (change)="handleFileUploadChange($event)"/>
+
   </div>
 
   <ion-item no-padding>
@@ -46,10 +47,10 @@
   <div class="bottom_btns">
 
     <button ion-button color="dark" outline mode="ios" >
-      <span> Inventory </span>   
+      <span> Inventory </span>
       <span> </span>
       <ion-input type="text" value="" [(ngModel)]="repadditem.inventory"></ion-input>
- 
+
     </button>
 
     <button ion-button color="primaryGrad" mode="ios" (tap)="additem()">

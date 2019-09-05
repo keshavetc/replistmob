@@ -12,6 +12,10 @@ export class DatabaseService {
     return firebase.firestore().collection('users').doc(path).set(data)
   }
 
+  setItemData(path, data) {
+    return firebase.firestore().collection('products').doc(path).set(data)
+  }
+
   getAllUsers() {
     return new Promise((res, rej) => {
       firebase.firestore().collection('users').get().then((users) => {
@@ -50,7 +54,7 @@ export class DatabaseService {
       });
     });
   }
-  
+
 getAllItems() {
     return new Promise((res, rej) => {
       firebase.firestore().collection('products').get().then((products) => {

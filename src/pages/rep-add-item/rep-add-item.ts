@@ -10,7 +10,8 @@ import { Observable } from 'rxjs';
 import {DatabaseService} from "../../services/database";
 
 
-
+const storageService = firebase.storage();
+const storageRef = storageService.ref();
 
 /**
  * Generated class for the RepAddItemPage page.
@@ -25,69 +26,112 @@ import {DatabaseService} from "../../services/database";
   templateUrl: 'rep-add-item.html',
 })
 export class RepAddItemPage {
- repadditem = {
+ repadditem:any = {
     pic: '',
     size:'',
     name:'',
     description:'',
   };
-   
- 
- 
-icrmnt_dcrmnt_btns:any;
-  
+
+  selectedFile:any;
+  uploadedFile:any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public actionSheetCtrl: ActionSheetController,
-     private cameraplay: CameraService, private camera: Camera, private toasts: ToastService) {}
-  ngOnInit(){}
- 
+     private cameraplay: CameraService, private camera: Camera, private toasts: ToastService,
+              private dbs:DatabaseService
+              ) {}
+  ngOnInit(){
+
+  }
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad RepAddItemPage');
+  }
+
+
+
+  handleFileUploadChange(e) {
+    this.selectedFile = e.target.files[0];
+   // console.log(this.selectedFile);
+    this.handleFileUploadSubmit();
+  }
+
+  handleFileUploadSubmit() {
+    let base=this;
+   let dt=new Date().toLocaleString();
+    dt=dt.toLocaleString().replace(/ /g,"_").replace(/\//g,"_");
+    var fn=base.selectedFile.name.split('.');
+    const uploadTask = storageRef.child(`images/${fn[0]+dt+'.'+fn[1]}`).put(base.selectedFile); //create a child directory called images, and place the file inside this directory
+    uploadTask.on('state_changed', (snapshot) => {
+      // Observe state change events such as progress, pause, and resume
+      snapshot.ref.getDownloadURL().then(function(downloadURL) {
+      // console.log("File available at", downloadURL);
+       base.uploadedFile=downloadURL;
+      });
+    }, (error) => {
+      // Handle unsuccessful uploads
+      console.log(error);
+    }, () => {
+      // Do something once upload is complete
+      console.log('success');
+    });
   }
 
   chooseimage() {
     this.cameraplay.presentChooseOption().then((data:string) => {
       this.repadditem.pic = data;
+      console.log();
      });
  }
 
   additem() {
-    this.repadditem = (this.repadditem as RepAddItem);
-    if (this.repadditem.name.length > 3 && this.repadditem.description.length > 0 && this.repadditem.size.toString().length == 10) {
-      this.navCtrl.push('RepAddItemDetailsPage', {'Additem': this.repadditem});
-    } 
-    let actionSheet = this.actionSheetCtrl.create({
-      title: 'Depend on account status',
-      buttons: [
-        {
-          text: 'Have Item',
-          handler: () => {
-            console.log('Item Added');
-            this.navCtrl.push('RepAddItemDetailsPage')
-          }
-        },
-        {
-          text: 'No Item',
-          handler: () => {
-            this.navCtrl.push('RepNoItemPage')
-          }
-        },{
-          text: 'Purchased',
-          handler: () => {
-            this.navCtrl.push('RepPurchasedPage')
-          }
-        },
-        {
-          text: 'Cancel',
-          role: 'cancel',
-          handler: () => {
-            console.log('Cancel clicked');
-          }
-        }
-      ]
-    });
+let base=this;
+    base.repadditem = (base.repadditem as RepAddItem);
+    base.repadditem.pic=base.uploadedFile;
+console.log(base.repadditem);
+    if (base.repadditem.name.length > 3 && base.repadditem.description.length > 0) {
+      //this.navCtrl.push('RepAddItemDetailsPage', {'Additem': this.repadditem});
+//-----------------------------------------------------------
+firebase.firestore().collection('products').doc('inventory').set(base.repadditem).then(res=>{
+  console.log(res);
+},(err)=>{
+  console.log('err:',err);
+});
+      //--------------------------------------------------------
 
-    actionSheet.present();
+    }
+    // let actionSheet = this.actionSheetCtrl.create({
+    //   title: 'Depend on account status',
+    //   buttons: [
+    //     {
+    //       text: 'Have Item',
+    //       handler: () => {
+    //         console.log('Item Added');
+    //         this.navCtrl.push('RepAddItemDetailsPage')
+    //       }
+    //     },
+    //     {
+    //       text: 'No Item',
+    //       handler: () => {
+    //         this.navCtrl.push('RepNoItemPage')
+    //       }
+    //     },{
+    //       text: 'Purchased',
+    //       handler: () => {
+    //         this.navCtrl.push('RepPurchasedPage')
+    //       }
+    //     },
+    //     {
+    //       text: 'Cancel',
+    //       role: 'cancel',
+    //       handler: () => {
+    //         console.log('Cancel clicked');
+    //       }
+    //     }
+    //   ]
+    // });
+    //
+    // actionSheet.present();
 
   }
 
