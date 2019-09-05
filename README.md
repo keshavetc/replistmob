@@ -1,2 +1,0 @@
-# replistmob
-Satish Padnani
