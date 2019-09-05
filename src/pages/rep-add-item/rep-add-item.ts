@@ -51,27 +51,28 @@ export class RepAddItemPage {
 
 
   handleFileUploadChange(e) {
-    this.selectedFile = e.target.files[0];
+    let base=this;
+    base.selectedFile = e.target.files[0];
    // console.log(this.selectedFile);
-    this.handleFileUploadSubmit();
+    setTimeout(function () {
+      base.handleFileUploadSubmit();
+    },3000);
   }
 
   handleFileUploadSubmit() {
     let base=this;
    let dt=new Date().toLocaleString();
-    dt=dt.toLocaleString().replace(/ /g,"_").replace(/\//g,"_");
+    dt=dt.toLocaleString().replace(/:/g,"_").replace(/,/g,"_").replace(/ /g,"_").replace(/\//g,"_");
     var fn=base.selectedFile.name.split('.');
-    const uploadTask = storageRef.child(`images/${fn[0]+dt+'.'+fn[1]}`).put(base.selectedFile); //create a child directory called images, and place the file inside this directory
+  // console.log('---FileName---',`images/${fn[0]+'_'+dt+'.'+fn[1]}`);
+    const uploadTask = storageRef.child(`images/${fn[0]+'_'+dt+'.'+fn[1]}`).put(base.selectedFile); //create a child directory called images, and place the file inside this directory
     uploadTask.on('state_changed', (snapshot) => {
       // Observe state change events such as progress, pause, and resume
       snapshot.ref.getDownloadURL().then(function(downloadURL) {
-      // console.log("File available at", downloadURL);
+      console.log("File available at", downloadURL);
        base.uploadedFile=downloadURL;
       });
-    }, (error) => {
-      // Handle unsuccessful uploads
-      console.log(error);
-    }, () => {
+    },null, () => {
       // Do something once upload is complete
       console.log('success');
     });
@@ -88,11 +89,12 @@ export class RepAddItemPage {
 let base=this;
     base.repadditem = (base.repadditem as RepAddItem);
     base.repadditem.pic=base.uploadedFile;
-console.log(base.repadditem);
+
     if (base.repadditem.name.length > 3 && base.repadditem.description.length > 0) {
       //this.navCtrl.push('RepAddItemDetailsPage', {'Additem': this.repadditem});
 //-----------------------------------------------------------
-firebase.firestore().collection('products').doc('inventory').set(base.repadditem).then(res=>{
+      console.log(base.repadditem);
+firebase.firestore().collection('products').doc('pdsuyashremote').set(base.repadditem).then(res=>{
   console.log(res);
 },(err)=>{
   console.log('err:',err);
