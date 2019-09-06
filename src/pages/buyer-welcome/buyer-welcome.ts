@@ -71,6 +71,6 @@ export class BuyerWelcomePage {
   }
 
   getUser(){
-    this.buyer = (this.navParams.get('user') as any);
+    this.buyer = (this.navParams.get('user') as any) || JSON.parse(localStorage.getItem('user'));
   }
 }

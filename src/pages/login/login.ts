@@ -99,8 +99,15 @@ export class LoginPage {
             },100)
            
             if(role == 'rep'){
+              localStorage.setItem('uid',useri.email);
+              localStorage.setItem('role','rep');
+              localStorage.setItem('user',JSON.stringify(useri));
               this.navCtrl.setRoot('RepWelcomePage',{'user':useri});
+              
             }else if(role == 'buyer'){
+              localStorage.setItem('uid',useri.email);
+              localStorage.setItem('role','buyer');
+              localStorage.setItem('user',JSON.stringify(useri));
               this.navCtrl.setRoot('BuyerWelcomePage',{'user':useri});
             }
 

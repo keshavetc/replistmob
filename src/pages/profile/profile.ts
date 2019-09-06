@@ -45,6 +45,7 @@ export class ProfilePage {
   logout() {
     this.loader.presentLoadingText('Please wait');
     this.auth.logout().then(() => {
+      localStorage.clear();
       this.navCtrl.setRoot('LoginPage').then(() => {
         setTimeout(() => {
           this.loader.stopLoader();

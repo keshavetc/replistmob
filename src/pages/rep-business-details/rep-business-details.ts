@@ -14,8 +14,10 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'rep-business-details.html',
 })
 export class RepBusinessDetailsPage {
-
+data:any;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.data=this.navParams.get('data');
+    console.log(this.data);
   }
 
   ionViewDidLoad() {

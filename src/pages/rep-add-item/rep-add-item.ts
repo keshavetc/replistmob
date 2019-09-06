@@ -8,6 +8,7 @@ import {ToastService} from "../../services/toast";
 import {CameraService} from "../../services/camera";
 import { Observable } from 'rxjs';
 import {DatabaseService} from "../../services/database";
+import { LoadingController } from 'ionic-angular';
 
 
 const storageService = firebase.storage();
@@ -38,7 +39,8 @@ export class RepAddItemPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public actionSheetCtrl: ActionSheetController,
      private cameraplay: CameraService, private camera: Camera, private toasts: ToastService,
-              private dbs:DatabaseService
+              private dbs:DatabaseService,
+              public loadingCtrl: LoadingController
               ) {}
   ngOnInit(){
 
@@ -47,6 +49,9 @@ export class RepAddItemPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad RepAddItemPage');
   }
+
+
+  
 
 
 
@@ -87,6 +92,8 @@ export class RepAddItemPage {
 
   additem() {
 let base=this;
+base.dbs.presentLoadingDefault();
+
     base.repadditem = (base.repadditem as RepAddItem);
     base.repadditem.pic=base.uploadedFile;
 
@@ -94,11 +101,27 @@ let base=this;
       //this.navCtrl.push('RepAddItemDetailsPage', {'Additem': this.repadditem});
 //-----------------------------------------------------------
       console.log(base.repadditem);
-firebase.firestore().collection('products').doc('pdsuyashremote').set(base.repadditem).then(res=>{
-  console.log(res);
-},(err)=>{
-  console.log('err:',err);
-});
+      var datas={
+        description: base.repadditem.description || "",
+        name: base.repadditem.name || "",
+        pic: base.repadditem.pic ||  "https://firebasestorage.googleapis.com/v0/b/replist-c3017.appspot.com/o/images%2Ffeedback_redlines_9_6_2019__9_18_31_AM.png?alt=media&token=0373b773-23ac-481d-a598-afe1b0e97bab",
+        price: base.repadditem.price || "",
+        size: base.repadditem.size || "",
+        createdon:new Date().toLocaleString(),
+        uid: localStorage.getItem('uid')
+      };
+      base.dbs.setItem(base.repadditem.name,JSON.stringify(datas)).then(res=>{
+        console.log('success=',res);
+        base.dbs.loadingdismiss();
+        base.dbs.getuseritem().then(res=>{
+          console.log('---res---',res);
+        });
+      },(err)=>{
+      console.log('Error=',err);
+      base.dbs.loadingdismiss();
+      });
+  
+
       //--------------------------------------------------------
 
     }

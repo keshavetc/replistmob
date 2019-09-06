@@ -66,6 +66,6 @@ export class RepWelcomePage {
     this.navCtrl.push('InvitationRequestsPage')
   }
   getUser(){
-    this.rep = (this.navParams.get('user') as any);
+     this.rep = (this.navParams.get('user') as any) || JSON.parse(localStorage.getItem('user'));
   }
 }
