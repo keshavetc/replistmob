@@ -96,11 +96,12 @@ getAllItems() {
 
   }
 
-  getuseritem()
+  getuseritem(uid)
   {
     var data=[];
+    console.log(uid);
     return new Promise((res, rej) => {
-      firebase.firestore().collection("products").where("uid", "==", localStorage.getItem('uid'))
+      firebase.firestore().collection("products").where("uid", "==",uid )
     .get()
     .then(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
@@ -236,6 +237,33 @@ getAllItems() {
   loadingdismiss()
   {
     this.loader.stopLoader();
+  }
+
+
+
+  getrep()
+  {
+    var data=[];
+    return new Promise((res, rej) => {
+      firebase.firestore().collection("users").where("role", "==", "rep")
+    .get()
+    .then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+            // doc.data() is never undefined for query doc snapshots
+           // console.log(doc.id, " => ", doc.data());
+            data.push({id:doc.id,data:doc.data()});
+            
+        });
+        res(data);
+    })
+    .catch(function(error) {
+        console.log("Error getting documents: ", error);
+        rej(error);
+    });
+  });
+
+
+  
   }
 
 

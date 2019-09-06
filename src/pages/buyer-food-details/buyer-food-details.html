@@ -13,13 +13,13 @@
 
   <div class="top">
     <img
-      src="https://www.bbb.org/globalassets/local-bbbs/council-113/media/ad-truth/ad-truth-hero-630x320.png"
+      src="{{rep.data.pic || 'https://firebasestorage.googleapis.com/v0/b/replist-c3017.appspot.com/o/download.png?alt=media&token=50234932-5047-4c25-aaed-aa81a20eff8f'}}"
       alt=""
     />
-    <p>Product Name</p>
+    <p>{{rep.data.name}}</p>
   </div>
 
-  <p text-center="">Price: $15 (per box)</p>
+  <p text-center="">Price: ${{rep.data.price}} (per box)</p>
 
 
   <ion-item no-padding>

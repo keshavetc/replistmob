@@ -14,8 +14,10 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'buyer-food-details.html',
 })
 export class BuyerFoodDetailsPage {
-
+rep:any;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.rep= this.navParams.get('datay');
+    console.log('<<<----->>>', this.rep);
   }
 
   ionViewDidLoad() {

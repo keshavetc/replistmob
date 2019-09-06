@@ -8,52 +8,23 @@
   <div padding="" style="background-color: #f8f8f8;">
     <ion-item no-padding="" no-lines="">
       <ion-thumbnail item-start>
-        <img src="https://www.designevo.com/res/templates/thumb_small/yellow-signboard-and-colorful-hamburger.png">
+        <img src="{{rep.data.pic || 'https://firebasestorage.googleapis.com/v0/b/replist-c3017.appspot.com/o/download.jfif?alt=media&token=a59d50c7-adf2-45d6-b6e9-303c138c330e'}}">
       </ion-thumbnail>
-      <h2>Business Name</h2>
-      <p>Kelley A. Fleming 196 Woodside Circle Mobile, FL 36602</p>
-      <p>317-416-3376</p>
+      <h2>{{rep.data.companyname}}</h2>
+      <p>{{rep.data.address}}</p>
+      <p>{{rep.data.phone}}</p>
     </ion-item>
   </div>
 
   <ion-grid>
     <ion-row>
-      <ion-col col-6>
+      <ion-col col-6  *ngFor="let rep of repbuyerdata" (click)="details(rep)">
         <div class="wrapper" (tap)="details()">
-          <img src="https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=400" alt="">
-          <p>Food Name</p>
+          <img src="{{rep.data.pic || 'https://firebasestorage.googleapis.com/v0/b/replist-c3017.appspot.com/o/download.png?alt=media&token=50234932-5047-4c25-aaed-aa81a20eff8f'}}" alt="">
+          <p>{{rep.data.name}}</p>
         </div>
       </ion-col>
-      <ion-col col-6>
-        <div class="wrapper" (tap)="details()">
-          <img src="https://images.pexels.com/photos/533360/pexels-photo-533360.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=400" alt="">
-          <p>Food Name</p>
-        </div>
-      </ion-col>
-      <ion-col col-6>
-        <div class="wrapper" (tap)="details()">
-          <img src="https://images.pexels.com/photos/675951/pexels-photo-675951.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=400" alt="">
-          <p>Food Name</p>
-        </div>
-      </ion-col>
-      <ion-col col-6>
-        <div class="wrapper" (tap)="details()">
-          <img src="https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=400" alt="">
-          <p>Food Name</p>
-        </div>
-      </ion-col>
-      <ion-col col-6>
-        <div class="wrapper" (tap)="details()">
-          <img src="https://images.pexels.com/photos/533360/pexels-photo-533360.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=400" alt="">
-          <p>Food Name</p>
-        </div>
-      </ion-col>
-      <ion-col col-6>
-        <div class="wrapper" (tap)="details()">
-          <img src="https://images.pexels.com/photos/675951/pexels-photo-675951.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=400" alt="">
-          <p>Food Name</p>
-        </div>
-      </ion-col>
+  
     </ion-row>
   </ion-grid>
   
