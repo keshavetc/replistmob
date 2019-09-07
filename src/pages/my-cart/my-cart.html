@@ -6,122 +6,38 @@ c <ion-header no-border="">
 
 <ion-content padding>
   <ion-list>
-    <ion-item no-lines="">
+    
+    
+    <ion-item no-lines="" *ngFor="let itm of cartItems">
 
-      <span class="close">
+      <span class="close" (click)="removeitem(itm)">
         <ion-icon name="close"></ion-icon>
       </span>
 
       <ion-thumbnail item-start>
         <img
-          src="https://previews.123rf.com/images/tankist276/tankist2761208/tankist276120800071/15182861-still-life-of-big-heap-multi-coloured-fruits-square-background.jpg">
+          src="{{itm.items.data.pic || 'https://firebasestorage.googleapis.com/v0/b/replist-c3017.appspot.com/o/download.png?alt=media&token=50234932-5047-4c25-aaed-aa81a20eff8f'}}">
       </ion-thumbnail>
-      <h2>Jalapeno</h2>
-      <h3>Price per box $80</h3>
+      <h2>{{itm.items.data.name}}</h2>
+      <h3>Price per box ${{itm.items.data.price}}</h3>
       <ion-row>
         <ion-col>
-          <h4>$160</h4>
+          <h4>${{(itm.items.data.price*itm.qnt)}}</h4>
         </ion-col>
         <ion-col>
           <div class="icrmnt_dcrmnt_btns">
-            <button ion-button icon-only="" outline mode="ios">
+            <button ion-button icon-only="" outline mode="ios" (click)="remove(itm)">
               <ion-icon name="remove"></ion-icon>
             </button>
-            <p>2</p>
-            <button ion-button icon-only="" outline mode="ios">
+            <p>{{itm.qnt}}</p>
+            <button ion-button icon-only="" outline mode="ios"  (click)="add(itm)">
               <ion-icon name="add"></ion-icon>
             </button>
           </div>
         </ion-col>
       </ion-row>
     </ion-item>
-    <ion-item no-lines="">
-
-      <span class="close">
-        <ion-icon name="close"></ion-icon>
-      </span>
-
-      <ion-thumbnail item-start>
-        <img
-          src="https://previews.123rf.com/images/tankist276/tankist2761208/tankist276120800071/15182861-still-life-of-big-heap-multi-coloured-fruits-square-background.jpg">
-      </ion-thumbnail>
-      <h2>Jalapeno</h2>
-      <h3>Price per box $80</h3>
-      <ion-row>
-        <ion-col>
-          <h4>$160</h4>
-        </ion-col>
-        <ion-col>
-          <div class="icrmnt_dcrmnt_btns">
-            <button ion-button icon-only="" outline mode="ios">
-              <ion-icon name="remove"></ion-icon>
-            </button>
-            <p>2</p>
-            <button ion-button icon-only="" outline mode="ios">
-              <ion-icon name="add"></ion-icon>
-            </button>
-          </div>
-        </ion-col>
-      </ion-row>
-    </ion-item>
-    <ion-item no-lines="">
-
-      <span class="close">
-        <ion-icon name="close"></ion-icon>
-      </span>
-
-      <ion-thumbnail item-start>
-        <img
-          src="https://previews.123rf.com/images/tankist276/tankist2761208/tankist276120800071/15182861-still-life-of-big-heap-multi-coloured-fruits-square-background.jpg">
-      </ion-thumbnail>
-      <h2>Jalapeno</h2>
-      <h3>Price per box $80</h3>
-      <ion-row>
-        <ion-col>
-          <h4>$160</h4>
-        </ion-col>
-        <ion-col>
-          <div class="icrmnt_dcrmnt_btns">
-            <button ion-button icon-only="" outline mode="ios">
-              <ion-icon name="remove"></ion-icon>
-            </button>
-            <p>2</p>
-            <button ion-button icon-only="" outline mode="ios">
-              <ion-icon name="add"></ion-icon>
-            </button>
-          </div>
-        </ion-col>
-      </ion-row>
-    </ion-item>
-    <ion-item no-lines="">
-
-      <span class="close">
-        <ion-icon name="close"></ion-icon>
-      </span>
-
-      <ion-thumbnail item-start>
-        <img
-          src="https://previews.123rf.com/images/tankist276/tankist2761208/tankist276120800071/15182861-still-life-of-big-heap-multi-coloured-fruits-square-background.jpg">
-      </ion-thumbnail>
-      <h2>Jalapeno</h2>
-      <h3>Price per box $80</h3>
-      <ion-row>
-        <ion-col>
-          <h4>$160</h4>
-        </ion-col>
-        <ion-col>
-          <div class="icrmnt_dcrmnt_btns">
-            <button ion-button icon-only="" outline mode="ios">
-              <ion-icon name="remove"></ion-icon>
-            </button>
-            <p>2</p>
-            <button ion-button icon-only="" outline mode="ios">
-              <ion-icon name="add"></ion-icon>
-            </button>
-          </div>
-        </ion-col>
-      </ion-row>
-    </ion-item>
+   
 
   </ion-list>
 </ion-content>
@@ -130,7 +46,7 @@ c <ion-header no-border="">
   <div class="total">
     <ion-list-header mode="wp" no-padding="">
       <p>Total <br>
-        <b> $540</b>
+        <b> ${{total}}</b>
       </p>
       <button ion-button mode="ios" icon-right="" color="primaryGrad" (tap)="checkout()">
         Checkout

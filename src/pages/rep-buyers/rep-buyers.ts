@@ -105,55 +105,26 @@ let base=this;
 //base.dbs.presentLoadingDefault();
 if(base.str)
 {
-  base.dbs.searchrepbuyer(base.str).then(data=>{
-  
+
+  base.dbs.searchrepbuyer(base.str).then(data1=>{
+    
     var dta:any=[];
-    dta=data;
+    dta=data1;
     base.repbuyerdata=[];
-    if(dta.length==0)
-    {
-      base.dbs.searchrepbuyer1(base.str).then(data=>{
-  
-        var dta:any=[];
-        dta=data;
-        base.repbuyerdata=[];
-        if(dta.length==0)
-        {
-          base.dbs.searchrepbuyer2(base.str).then(data=>{
-  
-            var dta:any=[];
-            dta=data;
-            base.repbuyerdata=[];
-             dta.forEach(element => {
-              base.repbuyerdata.push(element);
-            });
-          },(err)=>{
-            console.log('===err===',err);
-           // base.dbs.loadingdismiss();
-          });
-        }
-        else
-        {
+   
+   
+   
           dta.forEach(element => {
             base.repbuyerdata.push(element);
           });
-        }
-      
-      },(err)=>{
-        console.log('===err===',err);
-       // base.dbs.loadingdismiss();
-      });
-    }
-    else
-        {
-          dta.forEach(element => {
-            base.repbuyerdata.push(element);
-          });
-        }
+       
   },(err)=>{
     console.log('===err===',err);
-   // base.dbs.loadingdismiss();
+    this.grtbuyer();
   });
+
+
+
 }
 else
 {

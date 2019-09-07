@@ -3,7 +3,7 @@
     <ion-buttons right style="margin-right: 6px">
       <button ion-button icon-only="" (tap)="cart()">
         <ion-icon name="cart"></ion-icon>
-        <ion-badge color="light">2</ion-badge>
+        <ion-badge color="light">{{cartItems.length}}</ion-badge>
       </button>
     </ion-buttons>
   </ion-navbar>
@@ -24,13 +24,13 @@
 
   <ion-item no-padding>
     <ion-label floating>Order Quantity (Boxes)</ion-label>
-    <ion-input type="text" value="20"></ion-input>
+    <ion-input type="text" value="{{count}}"></ion-input>
     <div class="icrmnt_dcrmnt_btns" item-end="">
-      <button ion-button icon-only="" outline mode="ios">
+      <button ion-button icon-only="" outline mode="ios" (click)="remove()">
         <ion-icon name="remove"></ion-icon>
       </button>
-      <p>2</p>
-      <button ion-button icon-only="" outline mode="ios">
+      <p>{{count}}</p>
+      <button ion-button icon-only="" outline mode="ios" (click)="add()">
         <ion-icon name="add"></ion-icon>
       </button>
     </div>
@@ -45,7 +45,7 @@
 
   <div class="bottom_btns">
 
-    <button ion-button color="primaryGrad" mode="ios">
+    <button ion-button color="primaryGrad" mode="ios" (click)="addtocart()">
       Add to Cart
     </button>
 

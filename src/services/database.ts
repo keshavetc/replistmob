@@ -149,6 +149,7 @@ getAllItems() {
   
   searchrepbuyer(str)
   {
+    let base=this;
     var data=[];
     return new Promise((res, rej) => {
       firebase.firestore().collection("users").where("role", "==", "buyer").where("name", "==", str)
@@ -160,7 +161,21 @@ getAllItems() {
             data.push({id:doc.id,data:doc.data()});
            
         });
-        res(data);
+
+        if(data.length==0)
+        {
+          base.searchrepbuyer1(str).then(data1=>{
+            res(data1);
+          });
+
+        }
+        else
+        {
+          res(data);
+        }
+
+
+       
     })
     .catch(function(error) {
         console.log("Error getting documents: ", error);
@@ -175,6 +190,7 @@ getAllItems() {
    
   searchrepbuyer1(str)
   {
+    let base=this;
     var data=[];
     return new Promise((res, rej) => {
       firebase.firestore().collection("users").where("role", "==", "buyer").where("email", "==", str)
@@ -186,7 +202,19 @@ getAllItems() {
             data.push({id:doc.id,data:doc.data()});
            
         });
-        res(data);
+
+        if(data.length==0)
+        {
+          base.searchrepbuyer2(str).then(data1=>{
+            res(data1);
+          });
+
+        }
+        else
+        {
+          res(data);
+        }
+      
     })
     .catch(function(error) {
         console.log("Error getting documents: ", error);
@@ -199,6 +227,7 @@ getAllItems() {
  
   searchrepbuyer2(str)
   {
+    let base=this;
     var data=[];
     return new Promise((res, rej) => {
       firebase.firestore().collection("users").where("role", "==", "buyer").where("business", "==", str)
@@ -210,7 +239,17 @@ getAllItems() {
             data.push({id:doc.id,data:doc.data()});
            
         });
-        res(data);
+
+        if(data.length==0)
+        {
+          res(null);
+
+        }
+        else
+        {
+          res(data);
+        }
+        
     })
     .catch(function(error) {
         console.log("Error getting documents: ", error);
@@ -265,6 +304,85 @@ getAllItems() {
 
   
   }
+
+
+
+
+
+  
+  searchrep(str)
+  {
+    var data=[];
+    return new Promise((res, rej) => {
+      firebase.firestore().collection("users").where("role", "==", "rep").where("name", "==", str)
+    .get()
+    .then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+            // doc.data() is never undefined for query doc snapshots
+           // console.log(doc.id, " => ", doc.data());
+            data.push({id:doc.id,data:doc.data()});
+           
+        });
+        res(data);
+    })
+    .catch(function(error) {
+        console.log("Error getting documents: ", error);
+        rej(error);
+    });
+  });
+
+
+  
+  }
+
+   
+  searchrep1(str)
+  {
+    var data=[];
+    return new Promise((res, rej) => {
+      firebase.firestore().collection("users").where("role", "==", "rep").where("email", "==", str)
+    .get()
+    .then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+            // doc.data() is never undefined for query doc snapshots
+           // console.log(doc.id, " => ", doc.data());
+            data.push({id:doc.id,data:doc.data()});
+           
+        });
+        res(data);
+    })
+    .catch(function(error) {
+        console.log("Error getting documents: ", error);
+        rej(error);
+    });
+  });
+  
+  }
+
+ 
+  searchrep2(str)
+  {
+    var data=[];
+    return new Promise((res, rej) => {
+      firebase.firestore().collection("users").where("role", "==", "rep").where("companyname", "==", str)
+    .get()
+    .then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+            // doc.data() is never undefined for query doc snapshots
+           // console.log(doc.id, " => ", doc.data());
+            data.push({id:doc.id,data:doc.data()});
+           
+        });
+        res(data);
+    })
+    .catch(function(error) {
+        console.log("Error getting documents: ", error);
+        rej(error);
+    });
+  });
+  
+  }
+
 
 
 }

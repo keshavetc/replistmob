@@ -18,8 +18,8 @@
 
   <ion-grid>
     <ion-row>
-      <ion-col col-6  *ngFor="let rep of repbuyerdata" (click)="details(rep)">
-        <div class="wrapper" (tap)="details()">
+      <ion-col col-6  *ngFor="let rep of repbuyerdata" (tap)="details(rep)">
+        <div class="wrapper">
           <img src="{{rep.data.pic || 'https://firebasestorage.googleapis.com/v0/b/replist-c3017.appspot.com/o/download.png?alt=media&token=50234932-5047-4c25-aaed-aa81a20eff8f'}}" alt="">
           <p>{{rep.data.name}}</p>
         </div>

@@ -48,6 +48,7 @@ str:any;
   }
 
   details(data) {
+    console.log('---<<>>---',data);
     this.navCtrl.push('BuyerRepDetailsPage',{data:data});
   }
 
@@ -81,10 +82,11 @@ weekstart: "Wednesday"
 
     let base=this;
     base.dbs.presentLoadingDefault();
+    base.repbuyerdata=[];
     base.dbs.getrep().then(data=>{
       var dta:any=[];
       dta=data;
-      base.repbuyerdata=[];
+    
       dta.forEach(element => {
         base.repbuyerdata.push(element);
       });
@@ -92,6 +94,99 @@ weekstart: "Wednesday"
 
 base.dbs.loadingdismiss();
     });
+  }
+
+
+
+
+  search()
+  {
+
+    /*
+
+address: "A82Noida"
+city: "Noida"
+closedtime: "2"
+companylogo: ""
+companyname: "Hash"
+companywebsite: ""
+contactno: "7487094812"
+email: "satishpadnani@icloud.com"
+experience: "4"
+fax: "1234567890"
+name: "Satish"
+opentime: "13"
+password: "satish123"
+phone: "7487094812"
+pic: ""
+role: "rep"
+street: "A82"
+taxid: "12345"
+typeofbusiness: "IT Section"
+weekend: "friday"
+weekstart: "Wednesday"
+
+    */
+  
+let base=this;
+//base.dbs.presentLoadingDefault();
+if(base.str)
+{
+  base.dbs.searchrep(base.str).then(data=>{
+  
+    var dta:any=[];
+    dta=data;
+    base.repbuyerdata=[];
+    if(dta.length==0)
+    {
+      base.dbs.searchrep1(base.str).then(data=>{
+  
+        var dta:any=[];
+        dta=data;
+        base.repbuyerdata=[];
+        if(dta.length==0)
+        {
+          base.dbs.searchrep2(base.str).then(data=>{
+  
+            var dta:any=[];
+            dta=data;
+            base.repbuyerdata=[];
+             dta.forEach(element => {
+              base.repbuyerdata.push(element);
+            });
+          },(err)=>{
+            console.log('===err===',err);
+           // base.dbs.loadingdismiss();
+          });
+        }
+        else
+        {
+          dta.forEach(element => {
+            base.repbuyerdata.push(element);
+          });
+        }
+      
+      },(err)=>{
+        console.log('===err===',err);
+       // base.dbs.loadingdismiss();
+      });
+    }
+    else
+        {
+          dta.forEach(element => {
+            base.repbuyerdata.push(element);
+          });
+        }
+  },(err)=>{
+    console.log('===err===',err);
+   // base.dbs.loadingdismiss();
+  });
+}
+else
+{
+  this.grtRep();
+}
+
   }
 
 

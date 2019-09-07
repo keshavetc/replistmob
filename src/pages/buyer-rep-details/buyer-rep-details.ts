@@ -49,7 +49,7 @@ repbuyerdata:any=[];
 
   details(datay) {
     console.log(datay);
-    this.navCtrl.push('BuyerFoodDetailsPage',{datax:datay})
+    this.navCtrl.push('BuyerFoodDetailsPage',{data:{x:datay}});
   }
 
   

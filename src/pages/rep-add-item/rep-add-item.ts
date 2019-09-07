@@ -29,7 +29,7 @@ const storageRef = storageService.ref();
 export class RepAddItemPage {
  repadditem:any = {
     pic: '',
-    size:'',
+    size:1,
     name:'',
     description:'',
   };
@@ -113,7 +113,7 @@ base.dbs.presentLoadingDefault();
       base.dbs.setItem(base.repadditem.name,JSON.stringify(datas)).then(res=>{
         console.log('success=',res);
         base.dbs.loadingdismiss();
-        base.dbs.getuseritem().then(res=>{
+        base.dbs.getuseritem(localStorage.getItem('uid')).then(res=>{
           console.log('---res---',res);
         });
       },(err)=>{
@@ -160,5 +160,16 @@ base.dbs.presentLoadingDefault();
 
   }
 
+  add()
+  {
+    
+    this.repadditem.size=parseInt(this.repadditem.size)+1;
+  }
+
+  remove()
+  {
+    if(parseInt(this.repadditem.size)>1)
+    this.repadditem.size=parseInt(this.repadditem.size)-1;
+  }
 }
 

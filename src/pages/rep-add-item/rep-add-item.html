@@ -7,9 +7,11 @@
 <ion-content padding>
 
   <div class="image_upload">
-    <ion-icon name="camera"></ion-icon>
-    <input type="file" class="file-select" accept="image/*" (change)="handleFileUploadChange($event)"/>
-
+   
+    <input type="file" class="file-select inputfile" accept="image/*" (change)="handleFileUploadChange($event)"/>
+    
+       
+        <label for="file">Choose a file</label>
   </div>
 
   <ion-item no-padding>
@@ -25,18 +27,21 @@
 
   <ion-item no-padding>
     <ion-label floating>Pack Size</ion-label>
-    <ion-input type="text" value="" [(ngModel)]="repadditem.size"></ion-input>
-   <!--  <div class="icrmnt_dcrmnt_btns" item-end="">
-      <button ion-button icon-only="" outline mode="ios">
+    <ion-input type="number" value="" [(ngModel)]="repadditem.size"></ion-input>
+    
+    <div class="icrmnt_dcrmnt_btns" item-end="">
+      <button ion-button icon-only="" outline mode="ios" (click)="remove()">
         <ion-icon name="remove"></ion-icon>
       </button>
 
-      <p> 2</p> -->
-    <!--   <button ion-button icon-only="" outline mode="ios">
+      <p>{{repadditem.size}}</p>
+      <button ion-button icon-only="" outline mode="ios"  (click)="add()">
         <ion-icon name="add"></ion-icon>
       </button>
      </div>
-  --> </ion-item>
+ 
+
+</ion-item>
 
 
   <ion-item no-padding class="pricebox">

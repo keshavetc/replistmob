@@ -5,8 +5,10 @@
 </ion-header>
 
 <ion-content>
-<ion-searchbar mode="ios" (ionChange)="search()" placeholder="Type User Name" [(ngModel)]="str"></ion-searchbar>
-
+<ion-searchbar mode="ios" placeholder="Type User Name" [(ngModel)]="str"></ion-searchbar>
+<button ion-button block (tap)="search()">
+    Search
+  </button>
   <ion-list no-margin="" no-lines="">
     <ion-item no-padding="" (tap)="details(rep)" *ngFor="let rep of repbuyerdata">
       <ion-thumbnail item-start>
