@@ -92,7 +92,7 @@ export class RepAddItemPage {
 
   additem() {
 let base=this;
-base.dbs.presentLoadingDefault();
+//base.dbs.presentLoadingDefault();
 
     base.repadditem = (base.repadditem as RepAddItem);
     base.repadditem.pic=base.uploadedFile;
@@ -111,15 +111,15 @@ base.dbs.presentLoadingDefault();
         uid: localStorage.getItem('uid'),
         inventory:base.repadditem.inventory
       };
-      base.dbs.setItem(datas).then(res=>{
+      console.log('---Working---');
+      base.dbs.setItem(null,datas).then(res=>{
         console.log('success=',res);
-        base.dbs.loadingdismiss();
-        base.dbs.getuseritem(localStorage.getItem('uid')).then(res=>{
-          console.log('---res---',res);
-        });
+       // base.dbs.loadingdismiss();
+       base.dbs.presentAlert("Item Added","Success");
+      
       },(err)=>{
       console.log('Error=',err);
-      base.dbs.loadingdismiss();
+      //base.dbs.loadingdismiss();
       });
   
 

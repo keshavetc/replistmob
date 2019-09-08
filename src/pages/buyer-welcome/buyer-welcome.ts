@@ -38,7 +38,7 @@ export class BuyerWelcomePage {
   }
 
   addbuyers() {
-    this.navCtrl.push('AddbuyersPage')
+    this.navCtrl.push('AddbuyersPage',{'role':'buyer'});
   }
 
   email() {
@@ -59,11 +59,11 @@ export class BuyerWelcomePage {
   }
 
   friends() {
-    this.navCtrl.push('RepFriendsPage')
+    this.navCtrl.push('RepFriendsPage',{'role':'buyer'})
   }
 
   request() {
-    this.navCtrl.push('InvitationRequestsPage')
+    this.navCtrl.push('InvitationRequestsPage',{'role':'buyer'})
   }
 
   cart() {

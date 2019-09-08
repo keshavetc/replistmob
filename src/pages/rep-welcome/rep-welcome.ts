@@ -30,7 +30,7 @@ export class RepWelcomePage {
   }
 
   ytd() {
-    this.navCtrl.push('YtdOrderssPage')
+    this.navCtrl.push('YtdrepOrdersPage')
   }
 
   search() {
@@ -38,7 +38,7 @@ export class RepWelcomePage {
   }
 
   addbuyers() {
-    this.navCtrl.push('AddbuyersPage',{'user':this.rep,'role':'rep'})
+    this.navCtrl.push('AddbuyersPage',{'role':'rep'})
   }
 
   email() {
@@ -59,11 +59,11 @@ export class RepWelcomePage {
   }
 
   friends() {
-    this.navCtrl.push('RepFriendsPage',{'user':this.rep});
+    this.navCtrl.push('RepFriendsPage',{'role':'rep'});
   }
 
   request() {
-    this.navCtrl.push('InvitationRequestsPage')
+    this.navCtrl.push('InvitationRequestsPage',{'role':'rep'})
   }
   getUser(){
      this.rep = (this.navParams.get('user') as any) || JSON.parse(localStorage.getItem('user'));

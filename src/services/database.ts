@@ -116,7 +116,7 @@ getAllItems() {
     else
     {
       return new Promise((res, rej) => {
-    
+      
         firebase.firestore().collection("cart").add(data)
       .then(function(docRef) {
          // console.log("Document written with ID: ", docRef);
@@ -146,7 +146,7 @@ getAllItems() {
     else
     {
       return new Promise((res, rej) => {
-    
+        //console.log("Document written with ID: ", data);
         firebase.firestore().collection("products").add(data)
       .then(function(docRef) {
          // console.log("Document written with ID: ", docRef);
@@ -495,6 +495,250 @@ getAllItems() {
   });
   
   }
+
+
+
+  getRepOrder(id)
+  {
+    var data=[];
+    return new Promise((res, rej) => {
+      firebase.firestore().collection("soldout").where("rep", "==", id)
+    .get()
+    .then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+            // doc.data() is never undefined for query doc snapshots
+           // console.log(doc.id, " => ", doc.data());
+            data.push({id:doc.id,data:doc.data()});
+           
+        });
+        res(data);
+    })
+    .catch(function(error) {
+        console.log("Error getting documents: ", error);
+        rej(error);
+    });
+  });
+  
+  }
+
+
+  addFriends(id=null,data=null)
+  {
+   
+    
+      return new Promise((res, rej) => {
+        //console.log("Document written with ID: ", data);
+        firebase.firestore().collection("friends").doc(id).collection('list').add(data)
+      .then(function(docRef) {
+         // console.log("Document written with ID: ", docRef);
+          res(docRef);
+        })
+      .catch(function(error) {
+          console.error("Error adding document: ", error);
+          rej(error);
+      });
+    });
+  
+     
+
+  }
+
+
+  removeFriends(id=null,data=null)
+  {
+   
+    
+      return new Promise((res, rej) => {
+        //console.log("Document written with ID: ", data);
+        firebase.firestore().collection("friends").doc(id).collection('list').doc(data).delete()
+      .then(function() {
+         // console.log("Document written with ID: ", docRef);
+          res();
+        })
+      .catch(function(error) {
+          console.error("Error adding document: ", error);
+          rej(error);
+      });
+    });
+  
+     
+
+  }
+
+
+  acceptFriends(id=null,data=null)
+  {
+   
+    
+      return new Promise((res, rej) => {
+        console.log(id,data);
+        firebase.firestore().collection("friends").doc(id).collection('list').doc(data).update({status:'accepted'})
+      .then(function() {
+         // console.log("Document written with ID: ", docRef);
+          res();
+        })
+      .catch(function(error) {
+          console.error("Error adding document: ", error);
+          rej(error);
+      });
+    });
+  
+     
+
+  }
+
+
+
+  getFriends(id=null,datas=null,from=null)
+  {
+   
+    var data:any=[];
+      return new Promise((res, rej) => {
+        firebase.firestore().collection("friends").doc(id).collection('list').where("from", "==", from)
+    .get()
+    .then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+            // doc.data() is never undefined for query doc snapshots
+           // console.log(doc.id, " => ", doc.data());
+            data.push({id:doc.id,data:doc.data()});
+            
+        });
+        res(data);
+    })
+    .catch(function(error) {
+        console.log("Error getting documents: ", error);
+        rej(error);
+    });
+    });
+
+
+    
+  
+     
+
+  }
+
+  getFriendsRequest(id=null,datas=null,from=null)
+  {
+   
+    var data:any=[];
+      return new Promise((res, rej) => {
+        firebase.firestore().collection("friends").doc(id).collection('list').where("status", "==", "get")
+    .get()
+    .then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+            // doc.data() is never undefined for query doc snapshots
+           // console.log(doc.id, " => ", doc.data());
+            data.push({id:doc.id,data:doc.data()});
+            
+        });
+        res(data);
+    })
+    .catch(function(error) {
+        console.log("Error getting documents: ", error);
+        rej(error);
+    });
+    });
+  }
+
+
+  
+  getFriendsRequestx(id=null,from=null)
+  {
+   
+    var data:any=[];
+      return new Promise((res, rej) => {
+        firebase.firestore().collection("friends").doc(id).collection('list').where("status", "==", "sent").where("to", "==", from)
+    .get()
+    .then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+            // doc.data() is never undefined for query doc snapshots
+           // console.log(doc.id, " => ", doc.data());
+            data.push({id:doc.id,data:doc.data()});
+            
+        });
+        res(data);
+    })
+    .catch(function(error) {
+        console.log("Error getting documents: ", error);
+        rej(error);
+    });
+    });
+  }
+
+
+  getFriendsRequest1(id=null,datas=null,from=null)
+  {
+   
+    var data:any=[];
+      return new Promise((res, rej) => {
+        firebase.firestore().collection("friends").doc(id).collection('list').where("status", "==", "get")
+    .get()
+    .then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+            // doc.data() is never undefined for query doc snapshots
+           // console.log(doc.id, " => ", doc.data());
+            data.push({id:doc.id,data:doc.data()});
+            
+        });
+        res(data);
+    })
+    .catch(function(error) {
+        console.log("Error getting documents: ", error);
+        rej(error);
+    });
+    });
+  }
+
+
+
+  getUserById(id=null,datas=null,from=null)
+  {
+   
+    var data:any=[];
+      return new Promise((res, rej) => {
+        firebase.firestore().collection("users").where("email", "==", id)
+    .get()
+    .then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+            // doc.data() is never undefined for query doc snapshots
+           //console.log(doc.id, " => ", doc.data());
+            data.push({id:doc.id,data:doc.data()});
+            
+        });
+        res(data);
+    })
+    .catch(function(error) {
+        console.log("Error getting documents: ", error);
+        rej(error);
+    });
+    });
+  }
+
+  getAcceptedFriends(id=null,from=null)
+  {
+   
+    var data:any=[];
+      return new Promise((res, rej) => {
+        firebase.firestore().collection("friends").doc(id).collection('list').where("status", "==", "accepted")
+    .get()
+    .then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+            // doc.data() is never undefined for query doc snapshots
+           // console.log(doc.id, " => ", doc.data());
+            data.push({id:doc.id,data:doc.data()});
+            
+        });
+        res(data);
+    })
+    .catch(function(error) {
+        console.log("Error getting documents: ", error);
+        rej(error);
+    });
+    });
+  }
+
+
 
 
 }

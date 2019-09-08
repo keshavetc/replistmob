@@ -1,0 +1,30 @@
+<ion-header no-border="">
+  <ion-navbar color="primary">
+    <ion-title>YTD Orders</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-item no-padding="" no-lines="" (tap)="details()" *ngFor="let itm of orderlist">
+    <ion-thumbnail item-start>
+      <div class="bg"></div>
+     {{itm.data.date}}
+
+
+    </ion-thumbnail>
+    <h2>{{itm.data.RepDetails.name}}</h2>
+    <p>
+      <ion-icon name="basket"></ion-icon>
+      {{itm.data.RepDetails.business}}
+    </p>
+    <p>
+      <ion-icon name="pin"></ion-icon>
+      {{itm.data.RepDetails.address}}
+    </p>
+    <button ion-button clear item-end icon-only="">
+      <ion-icon name="arrow-forward"></ion-icon>
+    </button>
+
+  </ion-item>
+  
+</ion-content>

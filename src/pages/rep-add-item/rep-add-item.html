@@ -28,7 +28,7 @@
 
   <ion-item no-padding>
     <ion-label floating>Pack Size</ion-label>
-    <ion-input type="number" value="" [(ngModel)]="repadditem.size"></ion-input>
+    <ion-input type="number"  [disabled]="true" value="" [(ngModel)]="repadditem.size"></ion-input>
     
     <div class="icrmnt_dcrmnt_btns" item-end="">
       <button ion-button icon-only="" outline mode="ios" (click)="remove()">

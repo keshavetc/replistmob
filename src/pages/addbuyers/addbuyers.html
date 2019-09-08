@@ -7,19 +7,21 @@
 </ion-header>
 
 <ion-content>
-  <ion-searchbar mode="ios" placeholder="Enter User ID"></ion-searchbar>
+  <ion-searchbar mode="ios" placeholder="Type User Name" [(ngModel)]="str"></ion-searchbar>
+<button ion-button block (tap)="search()">
+    Search
+  </button>
 
-  <ion-list no-margin="" no-lines="" *ngIf="buyers.length != 0">
-    <ion-item no-padding="" *ngFor="let buyer of buyers">
+  <ion-list no-margin="" no-lines="" *ngIf="repbuyerdata.length != 0">
+    <ion-item no-padding="" *ngFor="let rep of repbuyerdata">
       <ion-thumbnail item-start>
-        <img *ngIf="!buyers?.profilepic" src="">
-        <img *ngIf="buyers?.profilepic" [src]="buyers.profilepic">
+        <img src="{{rep.data.profilepic || 'https://firebasestorage.googleapis.com/v0/b/replist-c3017.appspot.com/o/download.jfif?alt=media&token=a59d50c7-adf2-45d6-b6e9-303c138c330e'}}">
       </ion-thumbnail>
-      <h2>{{buyers.business}}</h2>
-      <p>{{buyers.typeofbusiness}}</p>
-      <p>{{buyers.address}}</p>
+      <h2>{{rep.data.business}}</h2>
+      <p>{{rep.data.address}}</p>
+      <p>{{rep.data.contactno}}</p>
 
-      <button ion-button clear item-end icon-only="" (tap)="nodata()">
+      <button ion-button clear item-end icon-only="" (tap)="add(rep)">
         <ion-icon name="add"></ion-icon>
       </button>
 
