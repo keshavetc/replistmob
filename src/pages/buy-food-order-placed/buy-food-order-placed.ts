@@ -16,6 +16,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 export class BuyFoodOrderPlacedPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    localStorage.removeItem("cart");
   }
 
   ionViewDidLoad() {
@@ -35,6 +36,6 @@ export class BuyFoodOrderPlacedPage {
   }
 
   details() {
-    this.navCtrl.push('YtdOrderssBusinessDetailsPage')
+    this.navCtrl.push('YtdOrderssPage')
   }
 }

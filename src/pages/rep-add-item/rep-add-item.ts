@@ -108,9 +108,10 @@ base.dbs.presentLoadingDefault();
         price: base.repadditem.price || "",
         size: base.repadditem.size || "",
         createdon:new Date().toLocaleString(),
-        uid: localStorage.getItem('uid')
+        uid: localStorage.getItem('uid'),
+        inventory:base.repadditem.inventory
       };
-      base.dbs.setItem(base.repadditem.name,JSON.stringify(datas)).then(res=>{
+      base.dbs.setItem(datas).then(res=>{
         console.log('success=',res);
         base.dbs.loadingdismiss();
         base.dbs.getuseritem(localStorage.getItem('uid')).then(res=>{

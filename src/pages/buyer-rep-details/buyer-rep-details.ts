@@ -48,8 +48,8 @@ repbuyerdata:any=[];
   }
 
   details(datay) {
-    console.log(datay);
-    this.navCtrl.push('BuyerFoodDetailsPage',{data:{x:datay}});
+   
+    this.navCtrl.push('BuyerFoodDetailsPage',{data:datay});
   }
 
   
@@ -75,7 +75,7 @@ uid: "satishpadnani@icloud.com"
       dta.forEach(element => {
         base.repbuyerdata.push(element);
       });
-      console.log('---Data---',base.repbuyerdata);
+     
 
     });
   }

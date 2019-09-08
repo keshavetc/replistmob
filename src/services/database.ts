@@ -4,6 +4,7 @@ import { rejects } from "assert";
 import { resolve } from "url";
 import { LoadingController } from 'ionic-angular';
 import {LoaderService} from "../services/loader";
+import { AlertController } from 'ionic-angular';
 
 @Injectable()
 export class DatabaseService {
@@ -11,8 +12,19 @@ loading:any;
   constructor(
      public loadingCtrl: LoadingController,
      private loader: LoaderService,
+     private alertCtrl: AlertController
   ) {
 
+  }
+
+  
+  presentAlert(msg,sub) {
+    let alert = this.alertCtrl.create({
+      title: sub,
+      subTitle: msg,
+      buttons: ['Dismiss']
+    });
+    alert.present();
   }
 
   setUserData(path, data) {
@@ -76,23 +88,78 @@ getAllItems() {
     });
   }
 
-  setItem(id,data)
+
+  addfetchcart(id=null,data=null)
   {
    
-    var dt=JSON.parse(data);
-    console.log(dt);
+    if(id)
+    {
       return new Promise((res, rej) => {
     
-    firebase.firestore().collection("products").add(dt)
-  .then(function(docRef) {
-     // console.log("Document written with ID: ", docRef);
-      res(docRef);
-    })
-  .catch(function(error) {
-      console.error("Error adding document: ", error);
-      rej(error);
-  });
-});
+        firebase.firestore().collection("cart").where("uid", "==",id)
+        .get()
+        .then(function(querySnapshot) {
+            querySnapshot.forEach(function(doc) {
+                // doc.data() is never undefined for query doc snapshots
+               // console.log(doc.id, " => ", doc.data());
+                data.push({id:doc.id,data:doc.data()});
+              
+            });
+            res(data);
+        })
+        .catch(function(error) {
+            console.log("Error getting documents: ", error);
+            rej(error);
+        });
+    });
+    }
+    else
+    {
+      return new Promise((res, rej) => {
+    
+        firebase.firestore().collection("cart").add(data)
+      .then(function(docRef) {
+         // console.log("Document written with ID: ", docRef);
+          res(docRef);
+        })
+      .catch(function(error) {
+          console.error("Error adding document: ", error);
+          rej(error);
+      });
+    });
+    }
+  
+     
+
+  }
+
+  setItem(id=null,data=null)
+  {
+   
+    if(id)
+    {
+      return new Promise((res, rej) => {
+    
+        firebase.firestore().collection("products").doc(id).update(data);
+    });
+    }
+    else
+    {
+      return new Promise((res, rej) => {
+    
+        firebase.firestore().collection("products").add(data)
+      .then(function(docRef) {
+         // console.log("Document written with ID: ", docRef);
+          res(docRef);
+        })
+      .catch(function(error) {
+          console.error("Error adding document: ", error);
+          rej(error);
+      });
+    });
+    }
+  
+     
 
   }
 
@@ -383,6 +450,51 @@ getAllItems() {
   
   }
 
+
+  addToSoldOut(data,id=null,datas=null)
+  {
+   
+    console.log(data);
+      return new Promise((res, rej) => {
+    
+    firebase.firestore().collection("soldout").add(data)
+  .then(function(docRef) {
+     // console.log("Document written with ID: ", docRef);
+     firebase.firestore().collection("products").doc(id).update(datas);
+      res(docRef);
+    })
+  .catch(function(error) {
+      console.error("Error adding document: ", error);
+      rej(error);
+  });
+});
+
+  }
+
+
+
+  getBuyerOrder(id)
+  {
+    var data=[];
+    return new Promise((res, rej) => {
+      firebase.firestore().collection("soldout").where("buyer", "==", id)
+    .get()
+    .then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+            // doc.data() is never undefined for query doc snapshots
+           // console.log(doc.id, " => ", doc.data());
+            data.push({id:doc.id,data:doc.data()});
+           
+        });
+        res(data);
+    })
+    .catch(function(error) {
+        console.log("Error getting documents: ", error);
+        rej(error);
+    });
+  });
+  
+  }
 
 
 }

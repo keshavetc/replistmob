@@ -24,7 +24,7 @@
 
   <ion-item no-padding>
     <ion-label floating>Order Quantity (Boxes)</ion-label>
-    <ion-input type="text" value="{{count}}"></ion-input>
+    <ion-input type="number" [disabled]="true" value="{{count}}"></ion-input>
     <div class="icrmnt_dcrmnt_btns" item-end="">
       <button ion-button icon-only="" outline mode="ios" (click)="remove()">
         <ion-icon name="remove"></ion-icon>
@@ -38,18 +38,17 @@
 
   <ion-item no-padding>
     <ion-label floating>Special Instruction</ion-label>
-    <ion-textarea type="text"
-                  value="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi dolores eligendi facilis molestias quasi ratione?"></ion-textarea>
+    <ion-textarea type="text"  [(ngModel)]="instruction" ></ion-textarea>
   </ion-item>
 
 
   <div class="bottom_btns">
 
-    <button ion-button color="primaryGrad" mode="ios" (click)="addtocart()">
-      Add to Cart
+    <button [disabled]="enabled" ion-button color="primaryGrad" mode="ios" (click)="addtocart()">
+      {{text}}
     </button>
 
-    <button ion-button color="primaryGrad" mode="ios" (tap)="placeorder()">
+    <button ion-button  [disabled]="enabled"  color="primaryGrad" mode="ios" (tap)="placeorder()">
       Place Order
     </button>
   </div>
