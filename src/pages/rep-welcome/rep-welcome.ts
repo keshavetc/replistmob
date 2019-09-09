@@ -1,6 +1,20 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {Rep} from "../../models/rep";
+import {ActionSheetController, IonicPage, NavController, NavParams} from 'ionic-angular';
+import {Camera, CameraOptions} from "@ionic-native/camera";
+import * as firebase from 'firebase';
+import { RepAddItem } from "../../models/repadditem";
+import {FormControl, FormGroup} from "@angular/forms";
+import {ToastService} from "../../services/toast";
+import {CameraService} from "../../services/camera";
+import { Observable } from 'rxjs';
+import {DatabaseService} from "../../services/database";
+import { LoadingController } from 'ionic-angular';
+
+
+const storageService = firebase.storage();
+const storageRef = storageService.ref();
+
 
 /**
  * Generated class for the RepWelcomePage page.
@@ -16,8 +30,15 @@ import {Rep} from "../../models/rep";
 })
 export class RepWelcomePage {
   rep:Rep;
+  user:any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    public navCtrl: NavController, public navParams: NavParams,public actionSheetCtrl: ActionSheetController,
+     private cameraplay: CameraService, private camera: Camera, private toasts: ToastService,
+              private dbs:DatabaseService,
+              public loadingCtrl: LoadingController
+  ) {
+    this.rep = (this.navParams.get('user') as any) || JSON.parse(localStorage.getItem('user'));
     this.getUser();
   }
 
@@ -66,6 +87,12 @@ export class RepWelcomePage {
     this.navCtrl.push('InvitationRequestsPage',{'role':'rep'})
   }
   getUser(){
-     this.rep = (this.navParams.get('user') as any) || JSON.parse(localStorage.getItem('user'));
+    this.dbs.getuserbyid(localStorage.getItem('uid')).then(resp=>{
+      var rst:any=resp;
+      this.rep=rst;
+      localStorage.setItem('user',JSON.stringify(rst));
+     // console.log(this.rep);
+     // this.getUser();
+    });
   }
 }

@@ -16,20 +16,16 @@
 
     <button ion-button color="dark" outline mode="ios" disabled>
       <span> Free Items </span>
-      <span> (10/10)</span>
+      <span> ({{usdcrdts}}/{{totcrd}})</span>
     </button>
     <p>To add more items to your profile you need to buy a package.</p>
 
 
     <div radio-group>
-      <ion-item no-padding="" no-lines="">
-        <ion-label>Some Package Info 1: $50 for 20 Items</ion-label>
-        <ion-radio value="1"></ion-radio>
-      </ion-item>
-
-      <ion-item no-padding="" no-lines="">
-        <ion-label>Some Package Info 1: $70 for 30 Items</ion-label>
-        <ion-radio value="2"></ion-radio>
+    
+      <ion-item no-padding="" no-lines="" *ngFor="let itm of plans;let i=index">
+        <ion-label>{{itm.data.name}} Info {{i}}: ${{itm.data.amount}} for {{itm.data.no_of_items}} Items</ion-label>
+        <ion-radio (click)="select(itm.data)"></ion-radio>
       </ion-item>
     </div>
 

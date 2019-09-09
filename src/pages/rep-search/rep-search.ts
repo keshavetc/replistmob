@@ -1,5 +1,7 @@
 import {Component, ElementRef, ViewChild} from '@angular/core';
 import {IonicPage, NavController, NavParams, Platform} from 'ionic-angular';
+import { ModalController} from 'ionic-angular';
+import {AutocompletePage} from '../autocomplete/autocomplete';
 
 declare var google;
 
@@ -11,9 +13,23 @@ declare var google;
 export class RepSearchPage {
   @ViewChild('map') mapElement: ElementRef;
   private map: any;
-
+  address:any={
+    place: ''
+  };
   constructor(public navCtrl: NavController,
-              public navParams: NavParams) {
+              public navParams: NavParams
+              ,
+    private ModalCtrl:ModalController) {
+      
+  }
+
+  showAddressModal () {
+    let modal = this.ModalCtrl.create(AutocompletePage);
+    let me = this;
+    modal.onDidDismiss(data => {
+      this.address.place = data;
+    });
+    modal.present();
   }
 
 

@@ -92,40 +92,65 @@ export class RepAddItemPage {
 
   additem() {
 let base=this;
+
+var crdt=JSON.parse(localStorage.getItem('user')).credits;
+var usdcrdts:any;
 //base.dbs.presentLoadingDefault();
+base.dbs.getuserbyid(localStorage.getItem('uid')).then(resp=>{
+  var rst:any=resp;
+  crdt=rst.credits;
+  usdcrdts=rst.usedcredits;
+  localStorage.setItem('user',JSON.stringify(rst));
 
-    base.repadditem = (base.repadditem as RepAddItem);
-    base.repadditem.pic=base.uploadedFile;
+if(parseInt(crdt)>0)
+{
+  base.repadditem = (base.repadditem as RepAddItem);
+  base.repadditem.pic=base.uploadedFile;
 
-    if (base.repadditem.name.length > 3 && base.repadditem.description.length > 0) {
-      //this.navCtrl.push('RepAddItemDetailsPage', {'Additem': this.repadditem});
+  if (base.repadditem.name.length > 3 && base.repadditem.description.length > 0) {
+    //this.navCtrl.push('RepAddItemDetailsPage', {'Additem': this.repadditem});
 //-----------------------------------------------------------
-      console.log(base.repadditem);
-      var datas={
-        description: base.repadditem.description || "",
-        name: base.repadditem.name || "",
-        pic: base.repadditem.pic ||  "https://firebasestorage.googleapis.com/v0/b/replist-c3017.appspot.com/o/images%2Ffeedback_redlines_9_6_2019__9_18_31_AM.png?alt=media&token=0373b773-23ac-481d-a598-afe1b0e97bab",
-        price: base.repadditem.price || "",
-        size: base.repadditem.size || "",
-        createdon:new Date().toLocaleString(),
-        uid: localStorage.getItem('uid'),
-        inventory:base.repadditem.inventory
-      };
-      console.log('---Working---');
-      base.dbs.setItem(null,datas).then(res=>{
-        console.log('success=',res);
-       // base.dbs.loadingdismiss();
-       base.dbs.presentAlert("Item Added","Success");
-      
-      },(err)=>{
-      console.log('Error=',err);
-      //base.dbs.loadingdismiss();
-      });
-  
+    console.log(base.repadditem);
+    var datas={
+      description: base.repadditem.description || "",
+      name: base.repadditem.name || "",
+      pic: base.repadditem.pic ||  "https://firebasestorage.googleapis.com/v0/b/replist-c3017.appspot.com/o/images%2Ffeedback_redlines_9_6_2019__9_18_31_AM.png?alt=media&token=0373b773-23ac-481d-a598-afe1b0e97bab",
+      price: base.repadditem.price || "",
+      size: base.repadditem.size || "",
+      createdon:new Date().toLocaleString(),
+      uid: localStorage.getItem('uid'),
+      inventory:base.repadditem.inventory
+    };
+    console.log('---Working---');
+    base.dbs.setItem(null,datas).then(res=>{
+      console.log('success=',res);
+     // base.dbs.loadingdismiss();
+    
+     crdt=parseInt(crdt)-1;
+     var dt={
+       credits:crdt,
+       usedcredits:parseInt(usdcrdts)+1
+    };
+     base.dbs.updateplancredits(localStorage.getItem('uid'),crdt);
+     base.dbs.presentAlert("Item Added","Success");
+    
+    },(err)=>{
+    console.log('Error=',err);
+    //base.dbs.loadingdismiss();
+    });
 
-      //--------------------------------------------------------
 
-    }
+    //--------------------------------------------------------
+
+  }
+}
+else
+{
+      base.navCtrl.push("RepNoItemPage");
+}
+
+});
+   
     // let actionSheet = this.actionSheetCtrl.create({
     //   title: 'Depend on account status',
     //   buttons: [

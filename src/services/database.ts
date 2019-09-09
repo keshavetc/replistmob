@@ -544,13 +544,13 @@ getAllItems() {
   }
 
 
-  removeFriends(id=null,data=null)
+  removeFriends(id=null,id1=null)
   {
    
     
       return new Promise((res, rej) => {
         //console.log("Document written with ID: ", data);
-        firebase.firestore().collection("friends").doc(id).collection('list').doc(data).delete()
+        firebase.firestore().collection("friends").doc(id).collection('list').doc(id1).delete()
       .then(function() {
          // console.log("Document written with ID: ", docRef);
           res();
@@ -566,13 +566,13 @@ getAllItems() {
   }
 
 
-  acceptFriends(id=null,data=null)
+  acceptFriends(id=null,id1=null)
   {
    
     
       return new Promise((res, rej) => {
-        console.log(id,data);
-        firebase.firestore().collection("friends").doc(id).collection('list').doc(data).update({status:'accepted'})
+        console.log(id,id1);
+        firebase.firestore().collection("friends").doc(id).collection('list').doc(id1).update({status:'accepted'})
       .then(function() {
          // console.log("Document written with ID: ", docRef);
           res();
@@ -738,6 +738,367 @@ getAllItems() {
     });
   }
 
+
+  addToShareList(data)
+  {
+let base=this;
+
+    return new Promise((res, rej) => {
+      //console.log("Document written with ID: ", data);
+      firebase.firestore().collection("shareList").add(data)
+    .then(function(docRef) {
+       // console.log("Document written with ID: ", docRef);
+      data.sharedWith.forEach(element => {
+        var dt={
+          shareListId:docRef.id,
+          email:element
+        };
+        base.addToShareWithList(dt);
+      });
+        res(docRef);
+      })
+    .catch(function(error) {
+        console.error("Error adding document: ", error);
+        rej(error);
+    });
+  });
+
+   
+  }
+
+
+  getSharedIfExist(id)
+  {
+
+    console.log(id);
+    var data:any=[];
+    return new Promise((res, rej) => {
+      firebase.firestore().collection("shareList").where("shared", "==", id)
+  .get()
+  .then(function(querySnapshot) {
+      querySnapshot.forEach(function(doc) {
+          // doc.data() is never undefined for query doc snapshots
+         // console.log(doc.id, " => ", doc.data());
+          data.push({id:doc.id,data:doc.data()});
+          
+      });
+      res(data);
+  })
+  .catch(function(error) {
+      console.log("Error getting documents: ", error);
+      rej(error);
+  });
+  });
+  }
+
+
+  getSharedbyid(id)
+  {
+    var data:any=[];
+  
+    return new Promise((res, rej) => {
+      firebase.firestore().collection("shareList").doc(id)
+  .get()
+  .then(function(querySnapshot) {
+      
+      res(querySnapshot);
+  })
+  .catch(function(error) {
+      console.log("Error getting documents: ", error);
+      rej(error);
+  });
+  });
+  }
+
+  getSharedbyidx(id)
+  {
+    var data:any=[];
+  
+    return new Promise((res, rej) => {
+      firebase.firestore().collection("shareList").doc(id)
+  .get()
+  .then(function(querySnapshot) {
+    if (querySnapshot.exists) {
+     // console.log("Document data:", querySnapshot.data());
+      res(querySnapshot.data());
+  } else {
+      // doc.data() will be undefined in this case
+      console.log("No such document!");
+      res(null);
+  }
+     
+  })
+  .catch(function(error) {
+      console.log("Error getting documents: ", error);
+      rej(error);
+  });
+  });
+  }
+
+
+
+
+addToShareWithList(data)
+  {
+
+
+   
+      //console.log("Document written with ID: ", data);
+      firebase.firestore().collection("sharedWith").add(data)
+    .then(function(docRef) {
+       // console.log("Document written with ID: ", docRef);
+       
+      })
+    .catch(function(error) {
+        console.error("Error adding document: ", error);
+       
+    });
+  
+
+   
+  }
+
+
+  removeshareList(id=null,id1=null)
+  {
+   
+    let base=this;
+  
+        //console.log("Document written with ID: ", data);
+        firebase.firestore().collection("shareList").doc(id).delete()
+      .then(function() {
+         // console.log("Document written with ID: ", docRef);
+        base.getsharewithShareListid(id).then(res=>{
+          var rs:any=[];
+          rs=res;
+          rs.forEach(element => {
+            base.removesharewith(element.id);
+          });
+        });
+        
+        })
+      .catch(function(error) {
+          console.error("Error adding document: ", error);
+         
+      });
+  
+  
+     
+
+  }
+
+
+  removesharewith(id=null,id1=null)
+  {
+   
+    
+     
+        //console.log("Document written with ID: ", data);
+        firebase.firestore().collection("sharedWith").doc(id).delete()
+      .then(function() {
+         // console.log("Document written with ID: ", docRef);
+        
+        })
+      .catch(function(error) {
+          console.error("Error adding document: ", error);
+         
+      });
+   
+  
+     
+
+  }
+
+
+
+
+  getsharewithShareListid(id)
+  {
+
+var data:any=[];
+  
+    return new Promise((res, rej) => {
+      firebase.firestore().collection("sharedWith").where("shareListId", "==", id)
+  .get()
+  .then(function(querySnapshot) {
+      
+    querySnapshot.forEach(function(doc) {
+      // doc.data() is never undefined for query doc snapshots
+     // console.log(doc.id, " => ", doc.data());
+      data.push({id:doc.id,data:doc.data()});
+      
+  });
+  res(data);
+  })
+  .catch(function(error) {
+      console.log("Error getting documents: ", error);
+      rej(error);
+  });
+  });
+  }
+
+
+
+
+  getShareByMe(id)
+  {
+    var data:any=[];
+    return new Promise((res, rej) => {
+      firebase.firestore().collection("shareList").where("sharedByid", "==", id)
+  .get()
+  .then(function(querySnapshot) {
+      
+    querySnapshot.forEach(function(doc) {
+      // doc.data() is never undefined for query doc snapshots
+     // console.log(doc.id, " => ", doc.data());
+      data.push({id:doc.id,data:doc.data()});
+      
+  });
+  res(data);
+  })
+  .catch(function(error) {
+      console.log("Error getting documents: ", error);
+      rej(error);
+  });
+  });
+  }
+
+
+  
+  getSharwithme(id)
+  {
+    var data:any=[];
+    return new Promise((res, rej) => {
+      firebase.firestore().collection("sharedWith").where("email", "==", id)
+  .get()
+  .then(function(querySnapshot) {
+      
+    querySnapshot.forEach(function(doc) {
+      // doc.data() is never undefined for query doc snapshots
+     // console.log(doc.id, " => ", doc.data());
+      data.push({id:doc.id,data:doc.data()});
+      
+  });
+  res(data);
+  })
+  .catch(function(error) {
+      console.log("Error getting documents: ", error);
+      rej(error);
+  });
+  });
+  }
+
+
+
+
+
+  updateuserplan(id,plan)
+  {
+    return new Promise((res, rej) => {
+      console.log(id);
+      firebase.firestore().collection("users").doc(id).update(plan)
+    .then(function() {
+       // console.log("Document written with ID: ", docRef);
+        res();
+      })
+    .catch(function(error) {
+        console.error("Error adding document: ", error);
+        rej(error);
+    });
+  });
+  }
+
+
+
+getPlans(id)
+{
+  var data:any=[];
+  
+    return new Promise((res, rej) => {
+      firebase.firestore().collection("plans").doc(id)
+  .get()
+  .then(function(querySnapshot) {
+    if (querySnapshot.exists) {
+     // console.log("Document data:", querySnapshot.data());
+      res(querySnapshot.data());
+  } else {
+      // doc.data() will be undefined in this case
+      console.log("No such document!");
+      res(null);
+  }
+     
+  })
+  .catch(function(error) {
+      console.log("Error getting documents: ", error);
+      rej(error);
+  });
+  });
+}
+
+getuserbyid(id)
+{
+  return new Promise((res, rej) => {
+    firebase.firestore().collection("users").doc(id)
+.get()
+.then(function(querySnapshot) {
+  if (querySnapshot.exists) {
+   // console.log("Document data:", querySnapshot.data());
+    res(querySnapshot.data());
+} else {
+    // doc.data() will be undefined in this case
+    console.log("No such document!");
+    res(null);
+}
+   
+})
+.catch(function(error) {
+    console.log("Error getting documents: ", error);
+    rej(error);
+});
+});
+}
+
+
+updateplancredits(id,data)
+  {
+    return new Promise((res, rej) => {
+      console.log(id);
+      firebase.firestore().collection("users").doc(id).update(data)
+    .then(function() {
+       // console.log("Document written with ID: ", docRef);
+        res();
+      })
+    .catch(function(error) {
+        console.error("Error adding document: ", error);
+        rej(error);
+    });
+  });
+  }
+
+
+  getAllPlan()
+  {
+    var data:any=[];
+  
+    return new Promise((res, rej) => {
+      firebase.firestore().collection("plans")
+      .get()
+      .then(function(querySnapshot) {
+          
+        querySnapshot.forEach(function(doc) {
+          // doc.data() is never undefined for query doc snapshots
+         // console.log(doc.id, " => ", doc.data());
+          data.push({id:doc.id,data:doc.data()});
+          
+      });
+      res(data);
+      })
+      .catch(function(error) {
+          console.log("Error getting documents: ", error);
+          rej(error);
+      });
+  });
+  }
 
 
 

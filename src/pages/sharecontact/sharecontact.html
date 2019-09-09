@@ -5,73 +5,37 @@
 </ion-header>
 
 <ion-content>
-  <ion-searchbar mode="ios"></ion-searchbar>
+  
 
-  <ion-list no-margin="" no-lines="">
+  <ion-list no-margin="" no-lines=""   *ngFor="let rep of repbuyerdata" >
     <ion-item no-padding="">
       <ion-thumbnail item-start>
-        <img src="https://www.designevo.com/res/templates/thumb_small/yellow-signboard-and-colorful-hamburger.png">
+        <img src="{{rep.data.profilepic || 'https://firebasestorage.googleapis.com/v0/b/replist-c3017.appspot.com/o/download.jfif?alt=media&token=a59d50c7-adf2-45d6-b6e9-303c138c330e'}}">
       </ion-thumbnail>
-      <h2>Business Name</h2>
-      <p>Fruits Seller</p>
+      <h2>{{rep.data.name}}</h2>
+      <p>{{rep.data.companyname}}</p>
+    
 
       <button ion-button clear item-end icon-only="">
         <label class="container">
-          <input type="checkbox" checked="checked">
+          <input type="checkbox"  (click)="select(rep)">
           <span class="checkmark"></span>
         </label>
 
       </button>
 
     </ion-item>
-    <ion-item no-padding="">
-      <ion-thumbnail item-start>
-        <img src="https://www.designevo.com/res/templates/thumb_small/yellow-signboard-and-colorful-hamburger.png">
-      </ion-thumbnail>
-      <h2>Business Name</h2>
-      <p>Fruits Seller</p>
 
-      <button ion-button clear item-end icon-only="">
-        <label class="container">
-          <input type="checkbox">
-          <span class="checkmark"></span>
-        </label>
+    <ion-item no-padding="" *ngIf="repbuyerdata.length==0">
+      
+      <h2>Sorry!</h2>
+      <p>No Friends </p>
+      <small>Found</small>
 
-      </button>
+
 
     </ion-item>
-    <ion-item no-padding="">
-      <ion-thumbnail item-start>
-        <img src="https://www.designevo.com/res/templates/thumb_small/yellow-signboard-and-colorful-hamburger.png">
-      </ion-thumbnail>
-      <h2>Business Name</h2>
-      <p>Fruits Seller</p>
-
-      <button ion-button clear item-end icon-only="">
-        <label class="container">
-          <input type="checkbox" checked="checked">
-          <span class="checkmark"></span>
-        </label>
-
-      </button>
-
-    </ion-item>
-    <ion-item no-padding="">
-      <ion-thumbnail item-start>
-        <img src="https://www.designevo.com/res/templates/thumb_small/yellow-signboard-and-colorful-hamburger.png">
-      </ion-thumbnail>
-      <h2>Business Name</h2>
-      <p>Fruits Seller</p>
-
-      <button ion-button clear item-end icon-only="">
-        <label class="container">
-          <input type="checkbox">
-          <span class="checkmark"></span>
-        </label>
-
-      </button>
-
-    </ion-item>
+  
 
   </ion-list>
 

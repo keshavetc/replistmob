@@ -62,8 +62,8 @@ ngOnIt(){}
     console.log('ionViewDidLoad RepFriendsPage');
   }
 
-  profile(i) {
-    //this.navCtrl.push('RepFriendsProfilePage', {'user': this.rep, 'friend': this.friends[i]});
+  profile(rep) {
+    this.navCtrl.push('RepFriendsProfilePage', {'friend': rep});
   }
 
   add() {
@@ -98,7 +98,7 @@ ngOnIt(){}
   getfriends()
   {
     let base=this;
-    
+    base.dbs.presentLoadingDefault();
     base.dbs.getAcceptedFriends(localStorage.getItem('uid')).then(data=>{
       var res:any=[];
       res=data;
@@ -111,6 +111,7 @@ ngOnIt(){}
         base.repbuyerdata.push({id:element.id,data:x.data});
       });
      });
+     base.dbs.loadingdismiss();
       
     });
   }

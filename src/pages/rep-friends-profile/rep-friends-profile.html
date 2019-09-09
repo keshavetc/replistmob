@@ -10,12 +10,11 @@
   <div padding="" style="background-color: #f8f8f8;">
     <ion-item no-padding="" no-lines="">
       <ion-thumbnail item-start>
-        <img *ngIf="!friend?.pic" src="https://www.designevo.com/res/templates/thumb_small/yellow-signboard-and-colorful-hamburger.png">
-        <img *ngIf="friend?.pic" src="https://www.designevo.com/res/templates/thumb_small/yellow-signboard-and-colorful-hamburger.png">
+        <img src="{{user.data.profilepic || 'https://firebasestorage.googleapis.com/v0/b/replist-c3017.appspot.com/o/download.jfif?alt=media&token=a59d50c7-adf2-45d6-b6e9-303c138c330e'}}">
       </ion-thumbnail>
-      <h2>{{friend.companyname}}</h2>
-      <p>{{friend.address}}</p>
-      <p>{{friend.contactno}}</p>
+      <h2>{{user.data.companyname}}</h2>
+      <p>{{user.data.address}}</p>
+      <p>{{user.data.contactno}}</p>
     </ion-item>
   </div>
 
@@ -24,28 +23,28 @@
 
     <ion-item no-padding>
       <ion-label floating>Locality / Street</ion-label>
-      <ion-textarea disabled type="text" [value]="friend.street"></ion-textarea>
+      <ion-textarea disabled type="text" [value]="user.data.street"></ion-textarea>
     </ion-item>
 
 
     <ion-item no-padding>
       <ion-label floating>Email</ion-label>
-      <ion-input disabled type="email" [value]="friend.email"></ion-input>
+      <ion-input disabled type="email" [value]="user.data.email"></ion-input>
     </ion-item>
 
     <ion-item no-padding>
       <ion-label floating>Contact No</ion-label>
-      <ion-input disabled type="email" [value]="friend.phone"></ion-input>
+      <ion-input disabled type="email" [value]="user.data.phone"></ion-input>
     </ion-item>
 
     <ion-item no-padding>
       <ion-label floating>Fax</ion-label>
-      <ion-input disabled type="email" [value]="friend.fax"></ion-input>
+      <ion-input disabled type="email" [value]="user.data.fax"></ion-input>
     </ion-item>
 
 
     <div padding="">
-      <button ion-button icon-right="" mode="ios" color="primaryGrad" (tap)="recommend()">
+      <button ion-button icon-right="" mode="ios" color="primaryGrad" (tap)="recommend(user)">
        Recommend to a Buyer
       </button>
     </div>

@@ -88,16 +88,20 @@ export class LoginPage {
     this.database.getAllUsers().then((allusers: any[]) => {
       let found:boolean = false;
       allusers.forEach((useri) => {
-         console.log('aa');
+         
         if (useri.email == this.user_credentials.email && useri.password == this.user_credentials.password && useri.role == role) {
           console.log(useri.email == this.user_credentials.email,useri.password == this.user_credentials.password);
           found= true;
+         
           this.auth.login(this.user_credentials.email, this.user_credentials.password).then(() => {
             setTimeout(()=>{
              
               this.loader.stopLoader();
             },100)
-           
+           if(!useri.activePlan)
+           {
+                this.updateplan(useri.email);
+           }
             if(role == 'rep'){
               localStorage.setItem('uid',useri.email);
               localStorage.setItem('role','rep');
@@ -119,4 +123,34 @@ export class LoginPage {
       }
     });
   }
+
+
+
+  updateplan(id)
+  {
+    let base=this;
+    base.database.getPlans("Discount").then(data=>{
+       // console.log(data);
+        var result:any=data;
+        var dt={
+          activePlan:"Discount",
+          credits:result.no_of_items,
+          planfee:result.amount,
+          usedcredits:0,
+          planactivationDate:new Date().toLocaleString()
+        };
+
+        base.database.updateuserplan(id,dt).then(rest=>{
+base.database.getuserbyid(id).then(resp=>{
+  var rst:any=resp;
+  localStorage.setItem('user',JSON.stringify(rst));
+});
+        });
+    });
+
+  }
+
+
+
+  
 }

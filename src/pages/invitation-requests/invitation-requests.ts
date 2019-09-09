@@ -64,6 +64,7 @@ export class InvitationRequestsPage {
   grtrequest()
   {
     let base=this;
+    base.dbs.presentLoadingDefault();
     base.dbs.getFriendsRequest(localStorage.getItem('uid')).then(data=>{
       var res:any=[];
       res=data;
@@ -76,7 +77,7 @@ export class InvitationRequestsPage {
         base.repbuyerdata.push({id:element.id,data:x.data});
       });
      });
-      
+     base.dbs.loadingdismiss();
     });
   }
 

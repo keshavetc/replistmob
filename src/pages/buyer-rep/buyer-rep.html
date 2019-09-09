@@ -16,6 +16,19 @@
       <p>{{rep.data.address}}</p>
       <p>{{rep.data.phone}}</p>
     </ion-item>
+
+
+    <ion-item no-padding="" *ngIf="repbuyerdata.length==0">
+      
+      <h2>Sorry!</h2>
+      <p>No Buyers </p>
+      <small>Found</small>
+
+
+
+    </ion-item>
+   
+
    
   </ion-list>
 

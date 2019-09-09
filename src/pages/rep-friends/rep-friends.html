@@ -16,13 +16,24 @@
   </div> -->
   <ion-list no-margin="" no-lines="">
 
-    <ion-item no-padding=""  *ngFor="let rep of repbuyerdata">
+    <ion-item no-padding=""  *ngFor="let rep of repbuyerdata" (click)="profile(rep)">
       <ion-thumbnail item-start>
         <img src="{{rep.data.profilepic || 'https://firebasestorage.googleapis.com/v0/b/replist-c3017.appspot.com/o/download.jfif?alt=media&token=a59d50c7-adf2-45d6-b6e9-303c138c330e'}}">
       </ion-thumbnail>
       <h2>{{rep.data.companyname}}</h2>
       <p>{{rep.data.address}}</p>
       <p>{{rep.data.contactno}}</p>
+    </ion-item>
+
+
+    <ion-item no-padding="" *ngIf="repbuyerdata.length==0">
+      
+      <h2>Sorry!</h2>
+      <p>No Friends </p>
+      <small>Found</small>
+
+
+
     </ion-item>
 
 

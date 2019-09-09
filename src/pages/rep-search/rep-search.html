@@ -1,6 +1,10 @@
 <ion-header no-border="">
   <ion-navbar color="primary">
-    <ion-searchbar mode="ios" color="light"></ion-searchbar>
+    <ion-list>
+      <ion-item>
+        <ion-input (click)="showAddressModal()" [(ngModel)]="address.place"type="text" placeholder="Pick an address">              </ion-input>
+      </ion-item>
+    </ion-list>
 
     <ion-buttons right>
       <button ion-button icon-only="">
