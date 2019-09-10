@@ -1,8 +1,10 @@
 import {Component, NgZone} from '@angular/core';
 import {ViewController} from 'ionic-angular';
+declare let google: any;
 
 @Component({
-  templateUrl: 'build/pages/home/autocomplete.html'
+  selector: 'page-autocomplete',
+  templateUrl: 'page-autocomplete.html',
 })
 
 export class AutocompletePage {

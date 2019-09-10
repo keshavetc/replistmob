@@ -1062,7 +1062,7 @@ getuserbyid(id)
 updateplancredits(id,data)
   {
     return new Promise((res, rej) => {
-      console.log(id);
+      console.log(id,'----',data);
       firebase.firestore().collection("users").doc(id).update(data)
     .then(function() {
        // console.log("Document written with ID: ", docRef);

@@ -209,7 +209,7 @@ localStorage.getItem('uid')
         }
         else
         {
-          base.dbs.presentAlert("Only "+(base.counter-1)+" Item is placed Due to Insufficient stock for this Product. We Apologise!","Information");
+          base.dbs.presentAlert("Your Order is placed!","Information");
           var ind=base.cartItems.indexOf(element);
           base.cartItems.splice(ind,1);
           localStorage.setItem('cart',JSON.stringify(this.cartItems));
@@ -225,7 +225,8 @@ localStorage.getItem('uid')
     }
     else
     {
-      base.dbs.presentAlert("Only "+base.counter+" Item is placed Due to Insufficient stock for this Product. We Apologise!","Information");
+      base.dbs.presentAlert("Your Order is placed!","Information");
+     // base.dbs.presentAlert("Only "+base.counter+" Item is placed Due to Insufficient stock for this Product. We Apologise!","Information");
       localStorage.setItem('cart',JSON.stringify(this.cartItems));
     base.navCtrl.push('BuyFoodOrderPlacedPage')
 

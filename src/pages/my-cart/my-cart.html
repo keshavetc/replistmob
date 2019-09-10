@@ -48,7 +48,7 @@ c <ion-header no-border="">
       <p>Total <br>
         <b> ${{total}}</b>
       </p>
-      <button ion-button mode="ios" icon-right="" color="primaryGrad" (tap)="checkout()">
+      <button ion-button mode="ios" [disabled]="cartItems.length==0" icon-right="" color="primaryGrad" (tap)="checkout()">
         Checkout
         <ion-icon name="md-arrow-forward"></ion-icon>
       </button>

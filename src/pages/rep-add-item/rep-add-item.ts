@@ -92,7 +92,7 @@ export class RepAddItemPage {
 
   additem() {
 let base=this;
-
+base.dbs.presentLoadingDefault();
 var crdt=JSON.parse(localStorage.getItem('user')).credits;
 var usdcrdts:any;
 //base.dbs.presentLoadingDefault();
@@ -131,12 +131,14 @@ if(parseInt(crdt)>0)
        credits:crdt,
        usedcredits:parseInt(usdcrdts)+1
     };
-     base.dbs.updateplancredits(localStorage.getItem('uid'),crdt);
+     base.dbs.updateplancredits(localStorage.getItem('uid'),dt);
+     base.dbs.loadingdismiss();
+    
      base.dbs.presentAlert("Item Added","Success");
     
     },(err)=>{
     console.log('Error=',err);
-    //base.dbs.loadingdismiss();
+    base.dbs.loadingdismiss();
     });
 
 
@@ -197,5 +199,8 @@ else
     if(parseInt(this.repadditem.size)>1)
     this.repadditem.size=parseInt(this.repadditem.size)-1;
   }
+
+
+  
 }
 

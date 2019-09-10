@@ -29,7 +29,7 @@ const storageRef = storageService.ref();
   templateUrl: 'rep-welcome.html',
 })
 export class RepWelcomePage {
-  rep:Rep;
+  rep:any
   user:any;
 
   constructor(
@@ -38,11 +38,20 @@ export class RepWelcomePage {
               private dbs:DatabaseService,
               public loadingCtrl: LoadingController
   ) {
-    this.rep = (this.navParams.get('user') as any) || JSON.parse(localStorage.getItem('user'));
+   this.rep = (this.navParams.get('user') as any) || JSON.parse(localStorage.getItem('user'));
     this.getUser();
+    console.log('<<<--->>>');
   }
 
+  ionViewWillEnter(){
+    //calling an API
+    this.getUser();
+    console.log('<<<--->>>');
+    
+    }
+
   ionViewDidLoad() {
+    this.getUser();
     console.log('ionViewDidLoad RepWelcomePage');
   }
 
@@ -91,7 +100,7 @@ export class RepWelcomePage {
       var rst:any=resp;
       this.rep=rst;
       localStorage.setItem('user',JSON.stringify(rst));
-     // console.log(this.rep);
+      //console.log(this.rep);
      // this.getUser();
     });
   }
