@@ -1,7 +1,7 @@
 <ion-header no-border="">
   <ion-navbar color="primary">
     <ion-title>
-      Shared Buyers
+      Shared Contacts
     </ion-title>
   </ion-navbar>
 </ion-header>
@@ -13,7 +13,7 @@
     <ion-item no-lines="" style="border-radius: 4px;overflow: hidden">
       <ion-label>Shared by</ion-label>
       <ion-select [(ngModel)]="filter" (ionChange)="filterval()">
-        <ion-option value="f">Rep Friends</ion-option>
+        <ion-option value="f">Friends</ion-option>
         <ion-option value="m" selected>Me</ion-option>
       </ion-select>
     </ion-item>
@@ -30,6 +30,13 @@
       <p>{{rep.data.sharedata.data.contactno}}</p>
       <p>Shared by: {{rep.data.sharedBy.data.name}}</p>
     </ion-item>
+
+
+    
+    <ion-item no-padding="" *ngIf="repbuyerdata.length==0">
+        
+        <p>Empty Records!</p>
+      </ion-item>
 
 
 

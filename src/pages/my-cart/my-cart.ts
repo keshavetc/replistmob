@@ -31,6 +31,7 @@ export class MyCartPage {
   cartItems:any=[];
   total:any=0;
   itmcount:any=0;
+  itemids:any=[];
   constructor(
     public navCtrl: NavController, public navParams: NavParams,public actionSheetCtrl: ActionSheetController,
      private cameraplay: CameraService, private camera: Camera, private toasts: ToastService,
@@ -117,6 +118,7 @@ localStorage.getItem('uid')
     //this.navCtrl.push('BuyFoodOrderPlacedPage')
 
   let base=this;
+  base.dbs.presentLoadingDefault();
   base.placeorder();
   //  var ct=0;
   //  var tinterval=1000;
@@ -149,26 +151,40 @@ localStorage.getItem('uid')
   {
 
     let base=this;
+   
+   var RepDetails:any={
+      name:"",
+      business:"",
+      address:"",
+      phone:""
+    }
+
+    var repids:any=[];
+    //var oid=base.dbs.uuid();
+    //console.log(oid);
     var element:any;
+    console.log('---base.counter---',base.counter,'---base.cartItems.length---',base.cartItems.length,'---cartItems---',base.cartItems);
+    
     if(base.cartItems.length>base.counter)
     {
 
       element=base.cartItems[base.counter];
-
-      base.dbs.getItemDetails(element.items.id).then(data=>{
+       base.dbs.getItemDetails(element.items.id).then(data=>{
         var itms:any=data;
         console.log(itms.inventory,'>=',element.qnt);
       
        base.dbs.searchrep1(element.items.data.uid).then(rep=>{
+        repids.push(element.items.data.uid);
         var repdata:any;
        var name="";
        var business="";
        var address="";
          repdata=rep[0].data;
          console.log('---REP---',repdata);
-         name=repdata.name;
-         business=repdata.companyname;
-         address=repdata.address;
+         RepDetails.name=repdata.name;
+         RepDetails.business=repdata.companyname;
+         RepDetails.address=repdata.address;
+         RepDetails.phone=repdata.phone;
 
        
   
@@ -185,20 +201,17 @@ localStorage.getItem('uid')
             quantity:element.qnt,
             status:"ordered",
             instruction:element.desc,
-            RepDetails:{
-              name:name,
-              business:business,
-              address:address
-            }
+            RepDetails:RepDetails
           };
     
           console.log(items,'---Placed Items---',element);
           element.items.data.inventory=itms.inventory-element.qnt;
           base.dbs.addToSoldOut(items,element.items.id,element.items.data).then(res=>{
-            base.counter++;
-            var ind=base.cartItems.indexOf(element);
-          base.cartItems.splice(ind,1);
+          
+         
           base.counter++;
+         // console.log('soldout_ID:',res);
+          base.itemids.push(res);
           base.placeorder();
            
           },(err)=>{
@@ -209,10 +222,33 @@ localStorage.getItem('uid')
         }
         else
         {
+          var odata={
+            buyer:localStorage.getItem('uid'),
+            date:new Date().toLocaleString(),
+            status:"ordered",
+            itemsis:base.itemids,
+            RepDetails:RepDetails
+          };
+
+          base.dbs.CreateOrder(odata).then(res=>{
+           
+          console.log('soldout_ID:',res);
+          repids.forEach(element => {
+            var dt={
+              rep:element,
+              orderid:res,
+              buyer:localStorage.getItem('uid')
+            };
+            base.dbs.CreateRepOrder(dt).then(resx=>{});
+            base.dbs.loadingdismiss();
+          });
+          },(err)=>{
+            console.error(err);
+            base.dbs.loadingdismiss();
+          });
+          base.dbs.loadingdismiss();
           base.dbs.presentAlert("Your Order is placed!","Information");
-          var ind=base.cartItems.indexOf(element);
-          base.cartItems.splice(ind,1);
-          localStorage.setItem('cart',JSON.stringify(this.cartItems));
+          localStorage.removeItem('cart');
           base.navCtrl.push('BuyFoodOrderPlacedPage')
         }
 
@@ -225,9 +261,36 @@ localStorage.getItem('uid')
     }
     else
     {
+
+
+      var odata={
+        buyer:localStorage.getItem('uid'),
+        date:new Date().toLocaleString(),
+        status:"ordered",
+        itemsis:base.itemids,
+        RepDetails:RepDetails
+      };
+
+      base.dbs.CreateOrder(odata).then(res=>{
+       
+      console.log('soldout_ID:',res);
+      repids.forEach(element => {
+        var dt={
+          rep:element,
+          orderid:res,
+          buyer:localStorage.getItem('uid')
+        };
+        base.dbs.CreateRepOrder(dt).then(resx=>{});
+        base.dbs.loadingdismiss();
+      });
+       
+      },(err)=>{
+        console.error(err);
+        base.dbs.loadingdismiss();
+      });
       base.dbs.presentAlert("Your Order is placed!","Information");
-     // base.dbs.presentAlert("Only "+base.counter+" Item is placed Due to Insufficient stock for this Product. We Apologise!","Information");
-      localStorage.setItem('cart',JSON.stringify(this.cartItems));
+      localStorage.removeItem('cart');
+      base.dbs.loadingdismiss();
     base.navCtrl.push('BuyFoodOrderPlacedPage')
 
     }

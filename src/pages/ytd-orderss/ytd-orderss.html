@@ -5,26 +5,30 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-item no-padding="" no-lines="" (tap)="details()" *ngFor="let itm of orderlist">
+  <ion-item no-padding="" no-lines="" (tap)="details(itm)" *ngFor="let itm of orderlist">
    
       <div class="bg">
         {{itm.data.date}}
       </div>
    
 
-    <h2>{{itm.data.RepDetails.name}}</h2>
-    <p>
-      <ion-icon name="basket"></ion-icon>
-      {{itm.data.RepDetails.business}}
-    </p>
-    <p>
-      <ion-icon name="pin"></ion-icon>
-      {{itm.data.RepDetails.address}}
-    </p>
+    <h2>{{itm.id}}</h2>
+    
     <button ion-button clear item-end icon-only="">
       <ion-icon name="arrow-forward"></ion-icon>
     </button>
 
   </ion-item>
+
+
+  <ion-item no-padding="" no-lines=""  *ngIf="orderlist.length==0">
+   
+    <div class="bg">
+      No Orders Found!
+    </div>
+ 
+
+
+</ion-item>
   
 </ion-content>

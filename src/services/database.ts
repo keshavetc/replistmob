@@ -9,6 +9,7 @@ import { AlertController } from 'ionic-angular';
 @Injectable()
 export class DatabaseService {
 loading:any;
+
   constructor(
      public loadingCtrl: LoadingController,
      private loader: LoaderService,
@@ -461,7 +462,7 @@ getAllItems() {
   .then(function(docRef) {
      // console.log("Document written with ID: ", docRef);
      firebase.firestore().collection("products").doc(id).update(datas);
-      res(docRef);
+      res(docRef.id);
     })
   .catch(function(error) {
       console.error("Error adding document: ", error);
@@ -1099,6 +1100,109 @@ updateplancredits(id,data)
       });
   });
   }
+
+
+
+
+  uuid()
+  {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+      var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+      return v.toString(16);
+    });
+  }
+
+
+  CreateOrder(data)
+  {
+    return new Promise((res, rej) => {
+
+      //console.log("Document written with ID: ", data);
+      firebase.firestore().collection("order").add(data)
+    .then(function(docRef) {
+       // console.log("Document written with ID: ", docRef);
+       res(docRef.id);
+      })
+    .catch(function(error) {
+        console.error("Error adding document: ", error);
+       rej(error);
+    });
+
+  });
+  }
+
+  CreateRepOrder(data)
+  {
+    return new Promise((res, rej) => {
+
+    console.log("Document written with ID: ", data);
+      firebase.firestore().collection("reporder").add(data)
+    .then(function(docRef) {
+       // console.log("Document written with ID: ", docRef);
+       res(docRef.id);
+      })
+    .catch(function(error) {
+        console.error("Error adding document: ", error);
+       rej(error);
+    });
+
+  });
+  }
+
+  fetchorderlist(id)
+  {
+    var data:any=[];
+    return new Promise((res, rej) => {
+      firebase.firestore().collection("order").where("buyer", "==", id)
+  .get()
+  .then(function(querySnapshot) {
+      
+    querySnapshot.forEach(function(doc) {
+      // doc.data() is never undefined for query doc snapshots
+     // console.log(doc.id, " => ", doc.data());
+      data.push({id:doc.id,data:doc.data()});
+      
+  });
+  res(data);
+  })
+  .catch(function(error) {
+      console.log("Error getting documents: ", error);
+      rej(error);
+  });
+  });
+  }
+
+  onlyUnique(value, index, self) { 
+    return self.indexOf(value) === index;
+}
+
+
+
+fetchsoldoutbyid(id)
+{
+  return new Promise((res, rej) => {
+    firebase.firestore().collection("soldout").doc(id)
+.get()
+.then(function(querySnapshot) {
+  if (querySnapshot.exists) {
+   // console.log("Document data:", querySnapshot.data());
+    res(querySnapshot.data());
+} else {
+    // doc.data() will be undefined in this case
+    console.log("No such document!");
+    res(null);
+}
+   
+})
+.catch(function(error) {
+    console.log("Error getting documents: ", error);
+    rej(error);
+});
+});
+}
+
+
+
 
 
 

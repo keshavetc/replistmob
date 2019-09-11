@@ -55,7 +55,7 @@ export class BuyerWelcomePage {
   }
 
   repshared() {
-    this.navCtrl.push('BuyerSharedRepPage')
+    this.navCtrl.push('RepSharedBuyersPage')
   }
 
   friends() {

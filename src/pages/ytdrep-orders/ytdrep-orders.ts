@@ -44,18 +44,59 @@ export class YtdrepOrdersPage {
   }
 
 
-  details() {
-    this.navCtrl.push('YtdOrderssBusinessDetailsPage')
+  details(itm) {
+    this.navCtrl.push('YtdOrderssBusinessDetailsPage',{itm:itm})
   }
 
-
+buyers:any=[];
   getorders()
   {
     let base=this;
     base.dbs.getRepOrder(localStorage.getItem('uid')).then(res=>{
-    base.orderlist=res;
-    console.log('---XXX---',base.orderlist);
+   var orderlist:any=[];
+   orderlist=res;
+   base.orderlist=[];
+    orderlist.forEach(element => {
+     
+        base.getreporders(element.data.buyer,element.id)
+     
+      
+    });
+   
     });
   }
 
+
+
+
+  getreporders(id,itemid)
+  {
+    let base=this;
+    base.dbs.fetchorderlist(id).then(res=>{
+    
+    var rs:any=[];
+    rs=res;
+    rs.forEach(elementx => {
+     var itms:any=[];
+     itms=elementx.data.itemsis;
+     itms.forEach(element => {
+       if(element==itemid)
+       base.orderlist.push(elementx);
+     });
+     
+    });
+  
+
+   
+    });
+  }
+
+
+  
+  filterunique()
+  {
+    let base=this;
+    base.orderlist=base.orderlist.filter(base.dbs.onlyUnique);
+    console.log('---XXX---',base.orderlist);
+  }
 }

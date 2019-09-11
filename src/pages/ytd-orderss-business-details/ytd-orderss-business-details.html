@@ -1,26 +1,29 @@
+
 <ion-header no-border="">
   <ion-navbar color="primary">
     <ion-title>Order Deatils</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content>
+<ion-content *ngIf="items.length>0">
   <div class="wrapper">
     <ion-list-header mode="ios" no-padding="">
-      13/05 - 11:00 Am
+      {{orders.data.date}}
     </ion-list-header>
 
     <p>
       <ion-icon name="home"></ion-icon>
-      Rep Name
+     {{items[0].RepDetails.name}}
     </p>
-    <p>
-      <ion-icon name="call"></ion-icon>
-      020-9856-5457
-    </p>
+
+    <p *ngIf="items[0].RepDetails.phone">
+        <ion-icon name="call"></ion-icon>
+        {{items[0].RepDetails.phone || ''}}
+      </p>
+
     <p>
       <ion-icon name="pin"></ion-icon>
-      Michael I. Days 3756 Preston Street Wichita
+      {{items[0].RepDetails.address}}
     </p>
   </div>
 
@@ -30,74 +33,29 @@
     </ion-list-header>
 
     <ion-list no-lines="" no-margin="">
-      <ion-item no-padding="">
+      <ion-item no-padding="" *ngFor="let itm of items">
         <ion-thumbnail item-start>
           <img
-            src="https://previews.123rf.com/images/tankist276/tankist2761208/tankist276120800071/15182861-still-life-of-big-heap-multi-coloured-fruits-square-background.jpg">
+            src="{{itm.pic || 'https://firebasestorage.googleapis.com/v0/b/replist-c3017.appspot.com/o/download.png?alt=media&token=50234932-5047-4c25-aaed-aa81a20eff8f'}}">
         </ion-thumbnail>
-        <h2>Jalapeno</h2>
-        <p>Price per box $80</p>
+        <h2>{{itm.name}}</h2>
+        <p>Price per box ${{itm.price}}</p>
         <div item-end text-center="">
-          <h2 style="font-weight: bold">$160</h2>
-          <p>x2</p>
+          <h2 style="font-weight: bold">${{(itm.quantity*itm.price)}}</h2>
+          <p>{{(itm.quantity)}}</p>
         </div>
       </ion-item>
-      <ion-item no-padding="">
-        <ion-thumbnail item-start>
-          <img
-            src="https://previews.123rf.com/images/tankist276/tankist2761208/tankist276120800071/15182861-still-life-of-big-heap-multi-coloured-fruits-square-background.jpg">
-        </ion-thumbnail>
-        <h2>Jalapeno</h2>
-        <p>Price per box $80</p>
-        <div item-end text-center="">
-          <h2 style="font-weight: bold">$160</h2>
-          <p>x2</p>
-        </div>
-      </ion-item>
-      <ion-item no-padding="">
-        <ion-thumbnail item-start>
-          <img
-            src="https://previews.123rf.com/images/tankist276/tankist2761208/tankist276120800071/15182861-still-life-of-big-heap-multi-coloured-fruits-square-background.jpg">
-        </ion-thumbnail>
-        <h2>Jalapeno</h2>
-        <p>Price per box $80</p>
-        <div item-end text-center="">
-          <h2 style="font-weight: bold">$160</h2>
-          <p>x2</p>
-        </div>
-      </ion-item>
-      <ion-item no-padding="">
-        <ion-thumbnail item-start>
-          <img
-            src="https://previews.123rf.com/images/tankist276/tankist2761208/tankist276120800071/15182861-still-life-of-big-heap-multi-coloured-fruits-square-background.jpg">
-        </ion-thumbnail>
-        <h2>Jalapeno</h2>
-        <p>Price per box $80</p>
-        <div item-end text-center="">
-          <h2 style="font-weight: bold">$160</h2>
-          <p>x2</p>
-        </div>
-      </ion-item>
-      <ion-item no-padding="">
-        <ion-thumbnail item-start>
-          <img
-            src="https://previews.123rf.com/images/tankist276/tankist2761208/tankist276120800071/15182861-still-life-of-big-heap-multi-coloured-fruits-square-background.jpg">
-        </ion-thumbnail>
-        <h2>Jalapeno</h2>
-        <p>Price per box $80</p>
-        <div item-end text-center="">
-          <h2 style="font-weight: bold">$160</h2>
-          <p>x2</p>
-        </div>
-      </ion-item>
+      
     </ion-list>
 
   </div>
   <div class="total">
     <ion-list-header mode="wp" no-padding="">
       <p>Total</p>
-      $540
+      ${{total}}
     </ion-list-header>
   </div>
 </ion-content>
+
+
 

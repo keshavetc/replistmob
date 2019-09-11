@@ -56,7 +56,7 @@ export class RepWelcomePage {
   }
 
   buyers() {
-    this.navCtrl.push('RepBuyersPage')
+    this.navCtrl.push('RepFriendsPage',{'role':'rep'});
   }
 
   ytd() {

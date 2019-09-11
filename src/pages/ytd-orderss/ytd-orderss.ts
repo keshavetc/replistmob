@@ -12,6 +12,7 @@ import {DatabaseService} from "../../services/database";
 import { LoadingController } from 'ionic-angular';
 
 
+
 const storageService = firebase.storage();
 const storageRef = storageService.ref();
 
@@ -44,14 +45,14 @@ orderlist:any=[];
     console.log('ionViewDidLoad YtdOrderssPage');
   }
 
-  details() {
-    this.navCtrl.push('YtdOrderssBusinessDetailsPage')
+  details(itm) {
+    this.navCtrl.push('YtdOrderssBusinessDetailsPage',{itm:itm})
   }
 
   getorders()
   {
     let base=this;
-    base.dbs.getBuyerOrder(localStorage.getItem('uid')).then(res=>{
+    base.dbs.fetchorderlist(localStorage.getItem('uid')).then(res=>{
     base.orderlist=res;
     console.log('---XXX---',base.orderlist);
     });
