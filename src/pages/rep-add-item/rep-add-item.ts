@@ -79,7 +79,7 @@ export class RepAddItemPage {
       });
     },null, () => {
       // Do something once upload is complete
-      console.log('success');
+      console.log('success',base.uploadedFile);
     });
   }
 

@@ -50,8 +50,8 @@ export class RepSharedBuyersPage {
     console.log('ionViewDidLoad RepSharedBuyersPage');
   }
 
-  details() {
-    this.navCtrl.push('RepBusinessDetailsPage')
+  details(data) {
+    this.navCtrl.push('RepBusinessDetailsPage',{data:data})
   }
 
   getSharedByMe()
@@ -98,7 +98,7 @@ weekstart: "Wednesday"
         rs=dt;
         base.repbuyerdata=[];
         rs.forEach(element => {
-        // console.log(element);
+        //console.log(element);
               base.repbuyerdata.push(element);
         });
         base.dbs.loadingdismiss();

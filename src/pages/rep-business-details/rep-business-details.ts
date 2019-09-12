@@ -25,7 +25,11 @@ data:any;
   }
 
   home() {
+    var usr=JSON.parse(localStorage.getItem('user'))
+    if(usr.role=="rep")
     this.navCtrl.setRoot("RepWelcomePage")
+    else
+    this.navCtrl.setRoot("BuyerWelcomePage")
   }
 
   ytorders() {
@@ -41,7 +45,7 @@ data:any;
   }
 
   sharecontact() {
-    this.navCtrl.push('SharecontactPage')
+    this.navCtrl.push('SharecontactPage',{shared:this.data})
   }
 }
 

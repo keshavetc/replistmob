@@ -150,7 +150,7 @@ let base=this;
       base.dbs.getUserById(element.data.from).then(dat=>{
         var x:any=[];
         x=dat[0];  
-        
+        console.log(element.id,'---',base.user);
         if(element.id!=base.user.id)
         base.repbuyerdata.push({id:element.id,data:x.data});
       });

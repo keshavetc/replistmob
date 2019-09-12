@@ -103,7 +103,7 @@ this.payPal.init({
 
     
     let base=this;
-    base.dbs.presentLoadingDefault();
+   
     base.dbs.getPlans(plan).then(data=>{
        // console.log(data);
         var result:any=data;
@@ -122,7 +122,9 @@ base.dbs.getuserbyid(id).then(resp=>{
   base.dbs.loadingdismiss();
   base.navCtrl.setRoot('RepWelcomePage');
 });
+base.dbs.loadingdismiss();
         });
+        base.dbs.loadingdismiss();
     });
 
   }
@@ -141,6 +143,7 @@ no_of_items: "5"
 time: "2"
     */
       let base=this;
+      base.dbs.loadingdismiss();
       base.dbs.getAllPlan().then(resp=>{
 var res:any=[];
 res=resp;

@@ -21,14 +21,14 @@
 
   <ion-list no-margin="" no-lines="">
 
-    <ion-item no-padding="" (tap)="details(rep)" *ngFor="let rep of repbuyerdata">
+    <ion-item no-padding="" (tap)="details(rep.data.sharedata)" *ngFor="let rep of repbuyerdata">
       <ion-thumbnail item-start>
         <img src="{{rep.data.sharedata.data.pic || 'https://firebasestorage.googleapis.com/v0/b/replist-c3017.appspot.com/o/download.jfif?alt=media&token=a59d50c7-adf2-45d6-b6e9-303c138c330e'}}">
       </ion-thumbnail>
       <h2>{{rep.data.sharedata.data.companyname}}</h2>
       <p>{{rep.data.sharedata.data.address}}</p>
       <p>{{rep.data.sharedata.data.contactno}}</p>
-      <p>Shared by: {{rep.data.sharedBy.data.name}}</p>
+      <p>Shared by: {{rep.data.sharedByid}}</p>
     </ion-item>
 
 
